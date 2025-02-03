@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class MeleeBehaviour : MonoBehaviour
 {
-    public float destroyAfterSeconds;
+    public WeaponScriptableObject weaponData;
 
+    public float destroyAfterSeconds;
 
     protected virtual void Start()
     {

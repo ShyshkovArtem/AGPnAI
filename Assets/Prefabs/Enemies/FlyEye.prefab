@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7108b950b4081f44492f33766f862f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  enemyData: {fileID: 11400000, guid: 8a692e587e6d5f241b75b53d08d0bcd0, type: 2}
 --- !u!114 &1450514259440824488
 MonoBehaviour:
   m_ObjectHideFlags: 0

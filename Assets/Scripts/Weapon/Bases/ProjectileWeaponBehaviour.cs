@@ -5,6 +5,8 @@ using UnityEngine;
 //Base script for all projectile weapons
 public class ProjectileWeaponBehaviour : MonoBehaviour
 {
+    public WeaponScriptableObject weaponData;
+
     protected Vector3 direction;
     public float destroyAfterSeconds;
 

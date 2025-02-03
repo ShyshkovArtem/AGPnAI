@@ -613,11 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1ac6e40b2a65441b34a65723cfd0e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6138688580695220077, guid: 1b46828ed57998947b437657289a7b96, type: 3}
-  damage: 0
-  speed: 0
-  cooldownDuration: 3
-  pierce: 0
+  weaponData: {fileID: 11400000, guid: f97bae0747cc48e45923342990bdf76c, type: 2}
 --- !u!1 &1203786389
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,11 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492192bee5a367248a9aa353b7e6b343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3885136848405371734, guid: ce2f41e9e01ef38429e1875cf1b4a3c2, type: 3}
-  damage: 0
-  speed: 10
-  cooldownDuration: 2
-  pierce: 0
+  weaponData: {fileID: 11400000, guid: 20e01402fb5c3cf4685dedc08bf8c062, type: 2}
 --- !u!1 &1956899975
 GameObject:
   m_ObjectHideFlags: 0
