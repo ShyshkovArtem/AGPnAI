@@ -13,7 +13,7 @@ public class SpikeController : WeaponController
     protected override void Attack()
     {
         base.Attack();
-        GameObject spawnedMelee = Instantiate(weaponData.prefab);
+        GameObject spawnedMelee = Instantiate(weaponData.Prefab);
         spawnedMelee.transform.position = transform.position;   //Assign position to the player
         spawnedMelee.transform.parent = transform;
     }

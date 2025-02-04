@@ -725,9 +725,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2023846386190589259, guid: 09d0117f3fa668b408909e639f51dba9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 719433756781584805, guid: 09d0117f3fa668b408909e639f51dba9, type: 3}
       propertyPath: m_Name
       value: FlyEye
+      objectReference: {fileID: 0}
+    - target: {fileID: 719433756781584805, guid: 09d0117f3fa668b408909e639f51dba9, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8393856089907840860, guid: 09d0117f3fa668b408909e639f51dba9, type: 3}
       propertyPath: m_LocalPosition.x

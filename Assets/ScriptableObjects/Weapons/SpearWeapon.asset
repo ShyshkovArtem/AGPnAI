@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d86bfe0f260d7d49a8646e3279aa866, type: 3}
   m_Name: SpearWeapon
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3885136848405371734, guid: ce2f41e9e01ef38429e1875cf1b4a3c2, type: 3}
-  damage: 0
+  prefab: {fileID: 6259799442780589386, guid: 7cfc6190e85ccae4fb709c60eea38cc4, type: 3}
+  damage: 5
   speed: 10
   cooldownDuration: 2
-  pierce: 0
+  pierce: 1

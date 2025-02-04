@@ -13,7 +13,7 @@ public class SpearController : WeaponController
     protected override void Attack()
     {
         base.Attack();
-        GameObject spawnedSpear = Instantiate(weaponData.prefab);
+        GameObject spawnedSpear = Instantiate(weaponData.Prefab);
         spawnedSpear.transform.position = transform.position; //Assigned spawned spear position to the player
         spawnedSpear.GetComponent<SpearBehaviour>().DirectionChecker(pm.lastMovedVector);  //Reference plater move direction
     }

@@ -13,6 +13,6 @@ public class SpearBehaviour : ProjectileWeaponBehaviour
     
     void Update()
     {
-        transform.position += direction * weaponData.speed * Time.deltaTime; // Set movement of the spear
+        transform.position += direction * weaponData.Speed * Time.deltaTime; // Set movement of the spear
     }
 }

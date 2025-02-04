@@ -15,7 +15,7 @@ public class WeaponController : MonoBehaviour
     protected virtual void Start()
     {
         pm = FindObjectOfType<PlayerMovement>();
-        currentCooldown = weaponData.cooldownDuration; //Set current cooldown to be cooldown duration
+        currentCooldown = weaponData.CooldownDuration; //Set current cooldown to be cooldown duration
     }
 
 
@@ -31,6 +31,6 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Attack()
     {
-        currentCooldown = weaponData.cooldownDuration;
+        currentCooldown = weaponData.CooldownDuration;
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpikeWeapon
   m_EditorClassIdentifier: 
   prefab: {fileID: 6138688580695220077, guid: 1b46828ed57998947b437657289a7b96, type: 3}
-  damage: 0
+  damage: 5
   speed: 0
   cooldownDuration: 3
   pierce: 0

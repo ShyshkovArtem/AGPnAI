@@ -10,10 +10,35 @@ public class MeleeBehaviour : MonoBehaviour
 
     public float destroyAfterSeconds;
 
+    //Current stats
+    protected float currentDamage;
+    protected float currentMoveSpeed;
+    protected float currentCooldownDuration;
+    protected int currentPierce;
+
+
+    void Awake()
+    {
+        currentDamage = weaponData.Damage;
+        currentMoveSpeed = weaponData.Speed;
+        currentCooldownDuration = weaponData.CooldownDuration;
+        currentPierce = weaponData.Pierce;
+    }
+
+
     protected virtual void Start()
     {
         Destroy(gameObject, destroyAfterSeconds);
     }
 
-   
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Refference to the collided collider script and use TakeDamage() from it
+        if (collision.CompareTag("Enemy"))
+        {
+            EnemyStats enemy = collision.GetComponent<EnemyStats>();
+            enemy.TakeDamage(currentDamage);
+        }
+    }
 }
