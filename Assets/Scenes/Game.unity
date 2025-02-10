@@ -371,6 +371,8 @@ GameObject:
   - component: {fileID: 681098691}
   - component: {fileID: 681098695}
   - component: {fileID: 681098694}
+  - component: {fileID: 681098696}
+  - component: {fileID: 681098697}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -459,11 +461,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c391552cb99ae84caa18ba8d9df914b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   moveDir: {x: 0, y: 0}
   lastHorizontalVector: 0
   lastVerticalVector: 0
   lastMovedVector: {x: 0, y: 0}
+  characterData: {fileID: 11400000, guid: 0d06a92fb156c024bb04d755dfafe26e, type: 2}
 --- !u!61 &681098692
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -567,6 +569,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95e565254bbb6d429f822ee4a1bd24a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &681098696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681098688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a559c43cb36ec4c47b85f7cda964baf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterData: {fileID: 11400000, guid: 0d06a92fb156c024bb04d755dfafe26e, type: 2}
+  experience: 0
+  level: 1
+  experienceCap: 0
+  invincibilityDuration: 0.5
+  levelRanges:
+  - startLevel: 1
+    endLevel: 3
+    experienceCapIncrease: 100
+  - startLevel: 4
+    endLevel: 5
+    experienceCapIncrease: 200
+--- !u!114 &681098697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681098688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae697324d4d49a24a81894691088dba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1186137933
@@ -736,6 +774,10 @@ PrefabInstance:
     - target: {fileID: 719433756781584805, guid: 09d0117f3fa668b408909e639f51dba9, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040566816329428006, guid: 09d0117f3fa668b408909e639f51dba9, type: 3}
+      propertyPath: drops.Array.data[0].dropRate
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8393856089907840860, guid: 09d0117f3fa668b408909e639f51dba9, type: 3}
       propertyPath: m_LocalPosition.x

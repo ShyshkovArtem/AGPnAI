@@ -35,4 +35,15 @@ public class EnemyStats : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        //Ref the script from the collided collider and use TakeDamage()
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
+            player.TakeDamage(currentDamage);
+        }
+    }
 }

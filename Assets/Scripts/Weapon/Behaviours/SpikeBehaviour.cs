@@ -22,5 +22,14 @@ public class SpikeBehaviour : MeleeBehaviour
 
             markedEnemies.Add(collision.gameObject);
         }
+        else if (collision.CompareTag("Prop") && !markedEnemies.Contains(collision.gameObject))
+        {
+            if (collision.gameObject.TryGetComponent(out BreakabkeProps breakable))
+            {
+                breakable.TakeDamage(currentDamage);
+
+                markedEnemies.Add(collision.gameObject);
+            }
+        }
     }
 }

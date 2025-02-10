@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1329202498250294301
+--- !u!1 &7579108972808820124
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3069112426109699211}
-  - component: {fileID: 2181605498913015005}
-  - component: {fileID: -1367124133628248746}
-  - component: {fileID: -1424568474166321891}
-  - component: {fileID: -757170483611107022}
+  - component: {fileID: 8824140571646828591}
+  - component: {fileID: 7426696642100876916}
+  - component: {fileID: -4439742718341937824}
+  - component: {fileID: -629055685243684875}
   m_Layer: 0
-  m_Name: TerrainSpriteSheet_13
-  m_TagString: Prop
+  m_Name: BlueGem
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3069112426109699211
+--- !u!4 &8824140571646828591
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329202498250294301}
+  m_GameObject: {fileID: 7579108972808820124}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -35,13 +34,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2181605498913015005
+--- !u!212 &7426696642100876916
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329202498250294301}
+  m_GameObject: {fileID: 7579108972808820124}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,27 +72,27 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -934130031
-  m_SortingLayer: 2
+  m_SortingLayerID: 1406903539
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1824252625, guid: 6798af78eee78c24b88fa8e3c9cfa6d6, type: 3}
+  m_Sprite: {fileID: 1010443790, guid: aa0aa3517781158409b6d0f7f98a4330, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.65625, y: 0.65625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-1367124133628248746
-BoxCollider2D:
+--- !u!58 &-4439742718341937824
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329202498250294301}
+  m_GameObject: {fileID: 7579108972808820124}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -116,48 +115,22 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &-1424568474166321891
+  m_Radius: 0.328125
+--- !u!114 &-629055685243684875
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329202498250294301}
+  m_GameObject: {fileID: 7579108972808820124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab5671473488fc42ba54a82c248d72d, type: 3}
+  m_Script: {fileID: 11500000, guid: 94ec1df4913605b4dbb9bd737c41bf67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
---- !u!114 &-757170483611107022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329202498250294301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2cdd8e97546206469fbb1860d3a398f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drops:
-  - name: Red Potion
-    itemPrefab: {fileID: 6092042324715443492, guid: df0c10341f5141642949627a9814e6b0, type: 3}
-    dropRate: 50
+  experinceGranted: 100
