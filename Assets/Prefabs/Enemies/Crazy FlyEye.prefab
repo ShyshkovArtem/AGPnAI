@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5647282482070509887}
   - component: {fileID: 3040566816329428006}
   m_Layer: 0
-  m_Name: FlyEye
+  m_Name: Crazy FlyEye
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 611200178, guid: 5cd834e24f2aa164ca91b31327ccf47b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8018868, g: 0.3375398, b: 0.19290671, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34aded6d16cce849a878941b22e8730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 8a692e587e6d5f241b75b53d08d0bcd0, type: 2}
+  enemyData: {fileID: 11400000, guid: dc64d544f6f871e4d9eabe36f8efc1e6, type: 2}
   despawnDistance: 20
 --- !u!114 &3040566816329428006
 MonoBehaviour:
