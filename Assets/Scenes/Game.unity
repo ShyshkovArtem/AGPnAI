@@ -770,6 +770,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 0d06a92fb156c024bb04d755dfafe26e, type: 2}
+  currentHealth: 0
+  currentRecovery: 0
+  currentMoveSpeed: 0
+  currentMight: 0
+  currentProjectileSpeed: 0
   experience: 0
   level: 1
   experienceCap: 0
@@ -1332,6 +1337,66 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 3288341463541462597, guid: ff93a0313746f7044851569ce9dc87be, type: 3}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 2180184747976709967, guid: 6a6edcca0b6bee841b046728f4227339, type: 3}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 8815996787605121455, guid: bdc32d4ca10b5e64a8cc971174ba445e, type: 3}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 5222575026278808130, guid: b4d5d33431dd90745a74c749207ebc3d, type: 3}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 1895921910499487875, guid: 1ede479eba169334fae7665a20e0f419, type: 3}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 5132711235077180448, guid: eaa9843337d0d4d4e84750442d568eef, type: 3}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[8]
+      value: 
+      objectReference: {fileID: 8860511860705255793, guid: 47871fe6f860d8e4591b8b553e4847a5, type: 3}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[9]
+      value: 
+      objectReference: {fileID: 8529728413546593150, guid: aef9c6a8240ed6a4bacf945df8895a9d, type: 3}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[10]
+      value: 
+      objectReference: {fileID: 1329202498250294301, guid: a4138071a3266794bb8f83ed0a472252, type: 3}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[11]
+      value: 
+      objectReference: {fileID: 7236677807080258787, guid: c47a05d652129734d9571f1c70cb1b7e, type: 3}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[12]
+      value: 
+      objectReference: {fileID: 5603841388523235623, guid: d2affa6516bccee43ae7108a0f9770d3, type: 3}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[13]
+      value: 
+      objectReference: {fileID: 3313114037358636007, guid: 976cf33a58efb34479d5a8e3938bb8f1, type: 3}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[14]
+      value: 
+      objectReference: {fileID: 9117871734432712140, guid: e9f7b0bbe018e88458cc20feae7e0bd2, type: 3}
+    - target: {fileID: 6748490117157155493, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
+      propertyPath: propPrefabs.Array.data[15]
+      value: 
+      objectReference: {fileID: 6203303343771592389, guid: 29f22b75eebd84f41ac0080b09b5103a, type: 3}
     - target: {fileID: 7350947005478653614, guid: 4fcc06d9fe0234e428f3d55abf7f5544, type: 3}
       propertyPath: m_Name
       value: TerrainChunk

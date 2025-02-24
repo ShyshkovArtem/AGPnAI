@@ -18,7 +18,7 @@ public class SpikeBehaviour : MeleeBehaviour
         if(collision.CompareTag("Enemy") && !markedEnemies.Contains(collision.gameObject))
         {
             EnemyStats enemy = collision.GetComponent<EnemyStats>();
-            enemy.TakeDamage(currentDamage);
+            enemy.TakeDamage(GetCurrentDamage());
 
             markedEnemies.Add(collision.gameObject);
         }
@@ -26,7 +26,7 @@ public class SpikeBehaviour : MeleeBehaviour
         {
             if (collision.gameObject.TryGetComponent(out BreakabkeProps breakable))
             {
-                breakable.TakeDamage(currentDamage);
+                breakable.TakeDamage(GetCurrentDamage());
 
                 markedEnemies.Add(collision.gameObject);
             }

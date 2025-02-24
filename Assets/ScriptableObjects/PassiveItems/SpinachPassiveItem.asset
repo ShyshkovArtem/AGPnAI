@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4325949e892a21a4aa32d6eb073d547e, type: 3}
-  m_Name: SpearCharacter
+  m_Script: {fileID: 11500000, guid: c92dbb8f9798bd545a82c7ae53f9da1d, type: 3}
+  m_Name: SpinachPassiveItem
   m_EditorClassIdentifier: 
-  startingWeapon: {fileID: 0}
-  maxHealth: 1000
-  recovery: 0
-  moveSpeed: 5
-  might: 1
-  projectileSpeed: 0
+  multipler: 100

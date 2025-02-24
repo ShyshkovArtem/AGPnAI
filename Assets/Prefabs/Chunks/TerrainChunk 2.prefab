@@ -4792,7 +4792,6 @@ MonoBehaviour:
   propPrefabs:
   - {fileID: 6171324284807234281, guid: 87c94ccf1f686bb429e9b8ef489baa61, type: 3}
   - {fileID: 6203303343771592389, guid: c6ecf650e9a03734c917ef1ba2293f79, type: 3}
-  - {fileID: 6203303343771592389, guid: 29f22b75eebd84f41ac0080b09b5103a, type: 3}
   - {fileID: 3288341463541462597, guid: ff93a0313746f7044851569ce9dc87be, type: 3}
   - {fileID: 2180184747976709967, guid: 6a6edcca0b6bee841b046728f4227339, type: 3}
   - {fileID: 8815996787605121455, guid: bdc32d4ca10b5e64a8cc971174ba445e, type: 3}
