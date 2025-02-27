@@ -559,6 +559,7 @@ GameObject:
   - component: {fileID: 681098694}
   - component: {fileID: 681098696}
   - component: {fileID: 681098697}
+  - component: {fileID: 681098698}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -630,9 +631,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1203786390}
-  - {fileID: 1186137934}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &681098691
@@ -769,7 +768,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a559c43cb36ec4c47b85f7cda964baf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterData: {fileID: 11400000, guid: 0d06a92fb156c024bb04d755dfafe26e, type: 2}
   currentHealth: 0
   currentRecovery: 0
   currentMoveSpeed: 0
@@ -786,6 +784,11 @@ MonoBehaviour:
   - startLevel: 4
     endLevel: 5
     experienceCapIncrease: 200
+  weaponIndex: 0
+  passiveItemIndex: 0
+  secondWeaponTest: {fileID: 6706194232080868139, guid: 8685f051531875e428e41ad045ab18f8, type: 3}
+  firstPassiveItemTest: {fileID: 4273807213473160166, guid: 8cc0a949ecb17f74a852b4cf0d6ab26b, type: 3}
+  secondPassiveItemTest: {fileID: 6677649919711761375, guid: 8f0826bb337bda44c81e33a2fea25ff8, type: 3}
 --- !u!114 &681098697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -798,96 +801,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae697324d4d49a24a81894691088dba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1186137933
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1186137934}
-  - component: {fileID: 1186137935}
-  m_Layer: 0
-  m_Name: SpikeController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1186137934
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1186137933}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 681098690}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1186137935
+--- !u!114 &681098698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1186137933}
+  m_GameObject: {fileID: 681098688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1ac6e40b2a65441b34a65723cfd0e7, type: 3}
+  m_Script: {fileID: 11500000, guid: b099c19b9725abe4eaef5eab285a369e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: f97bae0747cc48e45923342990bdf76c, type: 2}
---- !u!1 &1203786389
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1203786390}
-  - component: {fileID: 1203786391}
-  m_Layer: 0
-  m_Name: SpearController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1203786390
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203786389}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 681098690}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1203786391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203786389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 492192bee5a367248a9aa353b7e6b343, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: 20e01402fb5c3cf4685dedc08bf8c062, type: 2}
+  weaponSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponLevels: 0000000000000000000000000000000000000000
+  passiveItemSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passiveItemLevels: 0000000000000000000000000000000000000000
 --- !u!1 &1211614474
 GameObject:
   m_ObjectHideFlags: 0

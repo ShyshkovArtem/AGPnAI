@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4325949e892a21a4aa32d6eb073d547e, type: 3}
-  m_Name: SpearCharacter
+  m_Name: SpikeCharacter
   m_EditorClassIdentifier: 
-  startingWeapon: {fileID: 8673356671845229549, guid: bfeb37c8c0954c746a755336af094aab, type: 3}
-  maxHealth: 1000
+  startingWeapon: {fileID: 6706194232080868139, guid: 8685f051531875e428e41ad045ab18f8, type: 3}
+  maxHealth: 1200
   recovery: 0
-  moveSpeed: 5
+  moveSpeed: 6
   might: 1
   projectileSpeed: 0
