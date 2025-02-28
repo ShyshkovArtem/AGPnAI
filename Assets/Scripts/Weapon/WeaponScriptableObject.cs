@@ -28,4 +28,11 @@ public class WeaponScriptableObject : ScriptableObject
     int pierce;
     public int Pierce { get => pierce; private set => pierce = value; }
 
+    [SerializeField]
+    int level;  //Should be modified only in the editor, NOT the game
+    public int Level { get => level; private set => level = value; }
+
+    [SerializeField]
+    GameObject nextLevelPrefab; //The prefab of the next level
+    public GameObject NextLevelPrefab { get => nextLevelPrefab; private set => nextLevelPrefab = value; }
 }

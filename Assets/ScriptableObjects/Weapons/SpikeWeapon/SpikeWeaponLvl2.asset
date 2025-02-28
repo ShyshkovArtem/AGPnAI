@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d86bfe0f260d7d49a8646e3279aa866, type: 3}
-  m_Name: SpikeWeapon
+  m_Name: SpikeWeaponLvl2
   m_EditorClassIdentifier: 
   prefab: {fileID: 6138688580695220077, guid: 1b46828ed57998947b437657289a7b96, type: 3}
   damage: 5
   speed: 0
-  cooldownDuration: 3
+  cooldownDuration: 2.5
   pierce: 0
+  level: 2
+  nextLevelPrefab: {fileID: 0}

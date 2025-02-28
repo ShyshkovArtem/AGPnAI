@@ -9,7 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c92dbb8f9798bd545a82c7ae53f9da1d, type: 3}
-  m_Name: SpinachPassiveItem
+  m_Script: {fileID: 11500000, guid: 7d86bfe0f260d7d49a8646e3279aa866, type: 3}
+  m_Name: SpearWeapon Lvl2
   m_EditorClassIdentifier: 
-  multipler: 100
+  prefab: {fileID: 6259799442780589386, guid: 7cfc6190e85ccae4fb709c60eea38cc4, type: 3}
+  damage: 5
+  speed: 15
+  cooldownDuration: 2
+  pierce: 1
+  level: 2
+  nextLevelPrefab: {fileID: 0}
