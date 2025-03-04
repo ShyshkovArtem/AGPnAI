@@ -7,16 +7,91 @@ public class PlayerStats : MonoBehaviour
     CharacterScriptableObject characterData;
 
     //Current Stats
-    [HideInInspector]
-    public float currentHealth;
-    [HideInInspector]
-    public float currentRecovery;
-    [HideInInspector]
+    float currentHealth;
+    float currentRecovery;
     public float currentMoveSpeed;
-    [HideInInspector]
-    public float currentMight;
-    [HideInInspector]
-    public float currentProjectileSpeed;
+    float currentMight;
+    float currentProjectileSpeed;
+    public float currentMagnet;
+
+    public float CurrentHealth
+    {
+        get { return currentHealth; }
+        set
+        {   
+            //Cheeck if the value has changed
+            if (currentHealth != value)
+            {
+                currentHealth = value;
+            }
+        }
+    }
+
+    public float CurrentRecovery
+    {
+        get { return currentRecovery; }
+        set
+        {
+            //Cheeck if the value has changed
+            if (currentRecovery != value)
+            {
+                currentRecovery = value;
+            }
+        }
+    }
+
+    public float CurrentMoveSpeed
+    {
+        get { return currentMoveSpeed; }
+        set
+        {
+            //Cheeck if the value has changed
+            if (currentMoveSpeed != value)
+            {
+                currentMoveSpeed = value;
+            }
+        }
+    }
+
+    public float CurrentMight
+    {
+        get { return currentMight; }
+        set
+        {
+            //Cheeck if the value has changed
+            if (currentMight != value)
+            {
+                currentMight = value;
+            }
+        }
+    }
+
+    public float CurrentProjectileSpeed
+    {
+        get { return currentProjectileSpeed; }
+        set
+        {
+            //Cheeck if the value has changed
+            if (currentProjectileSpeed != value)
+            {
+                currentProjectileSpeed = value;
+            }
+        }
+    }
+
+    public float CurrentMagnet
+    {
+        get { return currentMagnet; }
+        set
+        {
+            //Cheeck if the value has changed
+            if (currentMagnet != value)
+            {
+                currentMagnet = value;
+            }
+        }
+    }
+
 
     //Exp and level
     [Header("Exp/Lvl")]
@@ -56,11 +131,12 @@ public class PlayerStats : MonoBehaviour
         inventory = GetComponent<InventoreManager>();
 
         //Assign the variables
-        currentHealth = characterData.MaxHealth;
-        currentRecovery = characterData.Recovery;
-        currentMoveSpeed = characterData.MoveSpeed;
-        currentMight = characterData.Might;
-        currentProjectileSpeed = characterData.ProjectileSpeed;
+        CurrentHealth = characterData.MaxHealth;
+        CurrentRecovery = characterData.Recovery;
+        CurrentMoveSpeed = characterData.MoveSpeed;
+        CurrentMight = characterData.Might;
+        CurrentProjectileSpeed = characterData.ProjectileSpeed;
+        CurrentMagnet = characterData.Magnet;
 
         //Spawn the starting weapon
         SpawnWeapon(characterData.StartingWeapon);
@@ -121,12 +197,12 @@ public class PlayerStats : MonoBehaviour
     {
         if (!isInvincible)
         {
-            currentHealth -= dmg;
+            CurrentHealth -= dmg;
 
             invincibilityTimer = invincibilityDuration;
             isInvincible = true;
 
-            if (currentHealth <= 0)
+            if (CurrentHealth <= 0)
             {
                 Kill();
             }
@@ -142,13 +218,13 @@ public class PlayerStats : MonoBehaviour
 
     public void RestoreHealth (float amount)
     {
-        if (currentHealth < characterData.MaxHealth)
+        if (CurrentHealth < characterData.MaxHealth)
         {
-            currentHealth += amount;
+            CurrentHealth += amount;
 
-            if (currentHealth > characterData.MaxHealth)
+            if (CurrentHealth > characterData.MaxHealth)
             {
-                currentHealth = characterData.MaxHealth;
+                CurrentHealth = characterData.MaxHealth;
             }
         }
 
