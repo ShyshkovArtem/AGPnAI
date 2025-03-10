@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpikeCharacter
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 6706194232080868139, guid: 8685f051531875e428e41ad045ab18f8, type: 3}
-  maxHealth: 1200
+  maxHealth: 10
   recovery: 0
   moveSpeed: 6
   might: 1

@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {   
+    public static GameManager instance;
+
     //Different states of the game
     public enum GameState
     {
@@ -17,11 +21,33 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject pauseScreen;
+    public GameObject resultsScreen;
 
+    //Current stat display
+    public TextMeshProUGUI currentHealthDisplay;
+    public TextMeshProUGUI currentRecoveryDisplay;
+    public TextMeshProUGUI currentMoveSpeedDisplay;
+    public TextMeshProUGUI currentMightDisplay;
+    public TextMeshProUGUI currentProjectileSpeedDisplay;
+    public TextMeshProUGUI currentMagnetDisplay;
+
+    //Flag for game over
+    public bool isGameOver = false;
 
 
     void Awake()
     {
+        //Check to warn if there is another singleton
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Debug.LogWarning("EXTRA " + this + " DELETED");
+            Destroy(gameObject);
+        }
+
         DisableScreens();
     }
 
@@ -42,6 +68,13 @@ public class GameManager : MonoBehaviour
 
             case GameState.GameOver:
                 //Code of the gameover state
+                if (!isGameOver)
+                {
+                    isGameOver = true;
+                    Time.timeScale = 0f;    //Stop the game
+                    Debug.Log("GAME IS OVER");
+                    DisplayResults();
+                }
                 break;
 
             default:
@@ -102,5 +135,18 @@ public class GameManager : MonoBehaviour
     void DisableScreens()
     {
         pauseScreen.SetActive(false);
+        resultsScreen.SetActive(false);
+    }
+
+
+    public void GameOver()
+    {
+        ChangeState(GameState.GameOver);
+    }
+
+
+    void DisplayResults()
+    {
+        resultsScreen.SetActive(true);
     }
 }

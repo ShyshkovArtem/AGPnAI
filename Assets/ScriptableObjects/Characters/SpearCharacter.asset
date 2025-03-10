@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpearCharacter
   m_EditorClassIdentifier: 
   startingWeapon: {fileID: 8673356671845229549, guid: bfeb37c8c0954c746a755336af094aab, type: 3}
-  maxHealth: 1000
+  maxHealth: 10
   recovery: 0
   moveSpeed: 5
   might: 1
