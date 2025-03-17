@@ -19,17 +19,25 @@ public class GameManager : MonoBehaviour
     public GameState currentState;
     public GameState previousState;
 
-    [Header("UI")]
+    [Header("Screens")]
     public GameObject pauseScreen;
     public GameObject resultsScreen;
 
-    //Current stat display
+    [Header("Current Stats Displays")]
     public TextMeshProUGUI currentHealthDisplay;
     public TextMeshProUGUI currentRecoveryDisplay;
     public TextMeshProUGUI currentMoveSpeedDisplay;
     public TextMeshProUGUI currentMightDisplay;
     public TextMeshProUGUI currentProjectileSpeedDisplay;
     public TextMeshProUGUI currentMagnetDisplay;
+
+
+    [Header("Results Screen Displays")]
+    public Image chosenCharacterImage;
+    public TextMeshProUGUI chosenCharacterName;
+    public TextMeshProUGUI reachedLvlDisplay;
+    public List<Image> chosenWeaponsUI = new List<Image>(5);
+    public List<Image> chosenPassiveItemsUI = new List<Image>(5);
 
     //Flag for game over
     public bool isGameOver = false;
@@ -148,5 +156,55 @@ public class GameManager : MonoBehaviour
     void DisplayResults()
     {
         resultsScreen.SetActive(true);
+    }
+
+
+    public void AssignChosenCharacterUI(CharacterScriptableObject chosenCharacterData)
+    {
+        chosenCharacterImage.sprite = chosenCharacterData.Icon;
+        chosenCharacterName.text = chosenCharacterData.Name;
+    }
+
+    public void AssignReachedLvlUI(int recheadLvlData)
+    {
+        reachedLvlDisplay.text = recheadLvlData.ToString();
+    }
+
+
+    public void AssignChosenWeaponsAndPassiveItemsUI(List<Image> chosenWeaponData, List<Image> chosenPassiveItemsData)
+    {
+        if (chosenWeaponData.Count != chosenWeaponsUI.Count || chosenPassiveItemsUI.Count != chosenPassiveItemsData.Count)
+        {
+            Debug.Log("Lists have different lenghts");
+            return;
+        }
+
+        //Assign chosen weapons data to chosenWeaponsUI
+        for (int i = 0; i < chosenWeaponsUI.Count; i++)
+        {
+            if (chosenWeaponData[i].sprite)
+            {
+                chosenWeaponsUI[i].enabled = true;
+                chosenWeaponsUI[i].sprite = chosenWeaponData[i].sprite;
+            }
+            else
+            {
+                chosenWeaponsUI[i].enabled = false;
+            }
+        }
+
+        //Assign chosen passive items data to chosenPassiveItemsUI
+        for (int i = 0; i < chosenPassiveItemsUI.Count; i++)
+        {
+            if (chosenPassiveItemsData[i].sprite)
+            {
+                chosenPassiveItemsUI[i].enabled = true;
+                chosenPassiveItemsUI[i].sprite = chosenPassiveItemsData[i].sprite;
+            }
+            else
+            {
+                chosenPassiveItemsUI[i].enabled = false;
+            }
+        }
     }
 }
