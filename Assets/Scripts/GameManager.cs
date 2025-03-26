@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
     //Flag for pöayer choosing upfrades
     public bool choosingUpgrades;
 
+    //Reference to the player's  game object
+    public GameObject playerObject;
 
     void Awake()
     {
@@ -263,6 +265,7 @@ public class GameManager : MonoBehaviour
     public void StartLevelUp()
     {
         ChangeState(GameState.LevelUp);
+        playerObject.SendMessage("RemoveAndApplyUpgrades");
     }
 
 

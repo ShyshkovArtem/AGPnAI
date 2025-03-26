@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2092648701895771266}
   - component: {fileID: 1367471526152686075}
   m_Layer: 0
-  m_Name: Spike_default
+  m_Name: Spike_Lvl3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126c9b60790a9944a88b0ded8fce2c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: f97bae0747cc48e45923342990bdf76c, type: 2}
+  weaponData: {fileID: 11400000, guid: 3b6f5e47d1c1e1b46a76cceabcff1e8c, type: 2}
   destroyAfterSeconds: 1.5
 --- !u!58 &1367471526152686075
 CircleCollider2D:
