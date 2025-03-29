@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -629055685243684875}
   - component: {fileID: -8090582319816821149}
   - component: {fileID: 119208345062444999}
+  - component: {fileID: -202777982303609540}
   m_Layer: 0
   m_Name: BlueGem
   m_TagString: Untagged
@@ -172,3 +173,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.65625, y: 0.65625}
   m_EdgeRadius: 0
+--- !u!114 &-202777982303609540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7579108972808820124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328937873750aee4db61ef98b3327fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frequency: 3
+  magnitude: 0.1
+  direction: {x: 0, y: 1, z: 0}
