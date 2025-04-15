@@ -152,8 +152,6 @@ public class PlayerStats : MonoBehaviour
     public Image expBar;
     public TextMeshProUGUI levelText;
 
-    public GameObject secondWeaponTest;
-    public GameObject firstPassiveItemTest, secondPassiveItemTest;
 
     void Awake()
     {
@@ -172,9 +170,6 @@ public class PlayerStats : MonoBehaviour
 
         //Spawn the starting weapon
         SpawnWeapon(characterData.StartingWeapon);
-        //SpawnWeapon(secondWeaponTest);
-        //SpawnPassiveItem(firstPassiveItemTest); 
-        SpawnPassiveItem(secondPassiveItemTest);
     }
 
 
