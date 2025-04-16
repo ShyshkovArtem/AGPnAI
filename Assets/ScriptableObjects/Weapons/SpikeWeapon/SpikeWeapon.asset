@@ -21,4 +21,5 @@ MonoBehaviour:
   nextLevelPrefab: {fileID: 6706194232080868139, guid: 97544f2e1d433b74fa56be5ae69f0307, type: 3}
   name: Spike
   description: Deals damage to every enemy around the player
-  icon: {fileID: -1005445212, guid: e8ab59dbbc2943f47bea70ec3ce3891b, type: 3}
+  icon: {fileID: 21300000, guid: b487a7a8bfe420a479d3a977f9111827, type: 3}
+  evolvedUpgradeToRemove: 0

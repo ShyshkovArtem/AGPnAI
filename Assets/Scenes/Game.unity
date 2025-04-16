@@ -3586,6 +3586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMoveSpeed: 0
   currentMagnet: 0
+  damageEffect: {fileID: 3743102207993181865, guid: 75e472411f0aac14eac8b5ed078882a5, type: 3}
   experience: 0
   level: 1
   experienceCap: 0
