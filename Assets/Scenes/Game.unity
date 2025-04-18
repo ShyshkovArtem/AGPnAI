@@ -3555,6 +3555,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMoveSpeed: 0
   currentMagnet: 0
+  BaseMoveSpeed: 0
+  BaseHealth: 0
   damageEffect: {fileID: 3743102207993181865, guid: 75e472411f0aac14eac8b5ed078882a5, type: 3}
   experience: 0
   level: 1
@@ -3566,10 +3568,10 @@ MonoBehaviour:
     experienceCapIncrease: 100
   - startLevel: 4
     endLevel: 5
-    experienceCapIncrease: 150
+    experienceCapIncrease: 100
   - startLevel: 6
     endLevel: 10
-    experienceCapIncrease: 200
+    experienceCapIncrease: 100
   weaponIndex: 0
   passiveItemIndex: 0
   healthBar: {fileID: 1951210298}
@@ -3627,6 +3629,9 @@ MonoBehaviour:
   - passiveItemUpgradeIndex: 1
     initialPassiveItem: {fileID: 6677649919711761375, guid: 8f0826bb337bda44c81e33a2fea25ff8, type: 3}
     passiveItemData: {fileID: 11400000, guid: 0fc76cff32f1be24fab9a2b18f1228aa, type: 2}
+  - passiveItemUpgradeIndex: 2
+    initialPassiveItem: {fileID: 6677649919711761375, guid: a3dabe2770ee0e04d9de06e861c2ca8b, type: 3}
+    passiveItemData: {fileID: 11400000, guid: b4caccfa38d3dca45871de698cc9732d, type: 2}
   upgradeUIOptions:
   - upgradeNameDisplay: {fileID: 1401879440}
     upgradeDescriptionDisplay: {fileID: 1855461914}

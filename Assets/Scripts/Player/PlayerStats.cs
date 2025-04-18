@@ -16,6 +16,10 @@ public class PlayerStats : MonoBehaviour
     float currentProjectileSpeed;
     public float currentMagnet;
 
+    //Base Stats
+    public float BaseMoveSpeed;
+    public float BaseHealth;
+
     #region Current Stats Properties
     public float CurrentHealth
     {
@@ -170,6 +174,8 @@ public class PlayerStats : MonoBehaviour
         CurrentProjectileSpeed = characterData.ProjectileSpeed;
         CurrentMagnet = characterData.Magnet;
 
+        BaseMoveSpeed = CurrentMoveSpeed;
+        BaseHealth = CurrentHealth;
         //Spawn the starting weapon
         SpawnWeapon(characterData.StartingWeapon);
     }

@@ -19,7 +19,7 @@ MonoBehaviour:
   pierce: 1
   level: 5
   nextLevelPrefab: {fileID: 0}
-  name: Spear Level 5
+  name: Spear Level 5 (MAX)
   description: Damage increased by 10, speed by 5
   icon: {fileID: -2136110430, guid: e8ab59dbbc2943f47bea70ec3ce3891b, type: 3}
   evolvedUpgradeToRemove: 0

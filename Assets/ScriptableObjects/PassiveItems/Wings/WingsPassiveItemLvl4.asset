@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c92dbb8f9798bd545a82c7ae53f9da1d, type: 3}
-  m_Name: WingsPassiveItemLvl2
+  m_Name: WingsPassiveItemLvl4
   m_EditorClassIdentifier: 
-  multipler: 20
-  level: 2
-  nextLevelPrefab: {fileID: 4273807213473160166, guid: d5d71c26bc5c7f04ba8c85bf38bde940, type: 3}
-  name: Wings Level 2
-  description: Increases movement speed by 20%
+  multipler: 70
+  level: 4
+  nextLevelPrefab: {fileID: 4273807213473160166, guid: a700f212e355bd940b40dcd12257133d, type: 3}
+  name: Wings Level 4
+  description: Increases movement speed by 70%
   icon: {fileID: -346196065, guid: e8ab59dbbc2943f47bea70ec3ce3891b, type: 3}
