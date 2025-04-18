@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4325949e892a21a4aa32d6eb073d547e, type: 3}
-  m_Name: SpearCharacter
+  m_Name: RangeCharacter
   m_EditorClassIdentifier: 
   icon: {fileID: -952371306, guid: 461c46e65bc4215429643b9bc823ae05, type: 3}
-  name: Spear Character
+  name: Range Character
   startingWeapon: {fileID: 8673356671845229549, guid: bfeb37c8c0954c746a755336af094aab, type: 3}
   maxHealth: 400
-  recovery: 0
+  recovery: 2
   moveSpeed: 5
   might: 1
-  projectileSpeed: 0
+  projectileSpeed: 2
   magnet: 2

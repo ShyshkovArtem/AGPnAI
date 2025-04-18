@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d86bfe0f260d7d49a8646e3279aa866, type: 3}
-  m_Name: SpikeWeaponLvl3
+  m_Name: SpikeWeaponLvl4
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6138688580695220077, guid: 30faa97a6b6a3554bad7b54f37d220c2, type: 3}
-  damage: 10
+  prefab: {fileID: 6138688580695220077, guid: c5cf18ba4ce485a46a2f3731cfacbf20, type: 3}
+  damage: 15
   speed: 0
-  cooldownDuration: 2.5
+  cooldownDuration: 2.25
   pierce: 0
-  level: 3
-  nextLevelPrefab: {fileID: 6706194232080868139, guid: aaec47fa9ba805242b58421a963caf82, type: 3}
-  name: Spike Level 3
-  description: Damage increased by 5
+  level: 4
+  nextLevelPrefab: {fileID: 6706194232080868139, guid: 8e4c789de401a524ea2398e4d98581b5, type: 3}
+  name: Spike Level 4
+  description: Damage increased by 5, cooldown reduce by 0.25
   icon: {fileID: 21300000, guid: b487a7a8bfe420a479d3a977f9111827, type: 3}
   evolvedUpgradeToRemove: 0

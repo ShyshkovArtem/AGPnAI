@@ -12,11 +12,12 @@ GameObject:
   - component: {fileID: 8075166112032013925}
   - component: {fileID: 7647858911397806871}
   - component: {fileID: 2039163066883708539}
+  - component: {fileID: -5677590300351166317}
   - component: {fileID: -2023846386190589259}
   - component: {fileID: 1450514259440824488}
   - component: {fileID: 5647282482070509887}
   - component: {fileID: 3040566816329428006}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Crazy FlyEye
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -156,6 +157,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28125, y: 0.96875}
   m_EdgeRadius: 0
+--- !u!50 &-5677590300351166317
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719433756781584805}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &-2023846386190589259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +223,9 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: dc64d544f6f871e4d9eabe36f8efc1e6, type: 2}
   currentMoveSpeed: 0
   despawnDistance: 20
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  damageFlashDuration: 0.2
+  deathFadeTime: 0.5
 --- !u!114 &3040566816329428006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,4 +241,4 @@ MonoBehaviour:
   drops:
   - name: Blue Gem
     itemPrefab: {fileID: 7579108972808820124, guid: 87842067d3e8e824b9ff0adb2c9e428a, type: 3}
-    dropRate: 100
+    dropRate: 70

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8639634142326303111}
   - component: {fileID: 5823163463579289251}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TerrainSpriteSheet_8
   m_TagString: Prop
   m_Icon: {fileID: 0}

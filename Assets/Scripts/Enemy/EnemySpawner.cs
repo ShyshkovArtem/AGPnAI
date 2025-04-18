@@ -48,8 +48,12 @@ public class EnemySpawner : MonoBehaviour
 
     
     void Update()
-    {   
-        if (currentWaveCount < waves.Count && waves[currentWaveCount].spawnCount == 0 && !isWaveActive)  //Check if the wave had ended
+    {
+        // Check if the current wave is finished (all enemies spawned and all are dead)
+        if (currentWaveCount < waves.Count &&
+        waves[currentWaveCount].spawnCount >= waves[currentWaveCount].waveQuota &&
+        enemiesAlive == 0 &&
+        !isWaveActive)  
         {
             StartCoroutine(BeginNextWave());
         }

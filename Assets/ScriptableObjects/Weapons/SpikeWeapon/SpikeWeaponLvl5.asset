@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d86bfe0f260d7d49a8646e3279aa866, type: 3}
-  m_Name: EvolvedSpearWeapon
+  m_Name: SpikeWeaponLvl5
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6259799442780589386, guid: b814ea10b57fa4f4ea1de4dbca645496, type: 3}
-  damage: 50
-  speed: 20
+  prefab: {fileID: 6138688580695220077, guid: 06c2ebc2981d20940b9191615ef8d5cf, type: 3}
+  damage: 25
+  speed: 0
   cooldownDuration: 2.5
-  pierce: 3
-  level: 2
+  pierce: 0
+  level: 5
   nextLevelPrefab: {fileID: 0}
-  name: Gold Spear
-  description: 
-  icon: {fileID: -34537348, guid: e8ab59dbbc2943f47bea70ec3ce3891b, type: 3}
+  name: Spike Level 5
+  description: Damage increased by 10
+  icon: {fileID: 21300000, guid: b487a7a8bfe420a479d3a977f9111827, type: 3}
   evolvedUpgradeToRemove: 0

@@ -310,8 +310,13 @@ public class InventoreManager : MonoBehaviour
 
                         foreach (WeaponEvolutionBlueprint evolution in weaponEvolutions)
                         {
-                            if (weapon.weaponData.Level >= evolution.baseWeaponData.Level && catalyst.passiveItemData.Level >= evolution.catalystPassiveItemData.Level) 
-                                {
+                            if (weapon.weaponData == evolution.baseWeaponData &&
+                                catalyst.passiveItemData == evolution.catalystPassiveItemData &&
+                                weapon.weaponData.Level >= evolution.requiredBaseWeaponLevel && 
+                                catalyst.passiveItemData.Level >= evolution.requiredCatalystLevel)
+
+
+                            {
                                     possibleEvolutions.Add(evolution);
                                 }
                         }
@@ -338,9 +343,10 @@ public class InventoreManager : MonoBehaviour
 
                 if (!catalyst) { continue; }
 
-                if (weapon && catalyst && 
-                    weapon.weaponData.Level >= evolution.baseWeaponData.Level && 
-                    catalyst.passiveItemData.Level >= evolution.catalystPassiveItemData.Level)
+                if (weapon.weaponData == evolution.baseWeaponData &&
+                    catalyst.passiveItemData == evolution.catalystPassiveItemData &&
+                    weapon.weaponData.Level >= evolution.requiredBaseWeaponLevel &&
+                    catalyst.passiveItemData.Level >= evolution.requiredCatalystLevel)                
 
                 {
                     GameObject evolvedWeapon = Instantiate(evolution.evolvedWeapon, transform.position, Quaternion.identity);

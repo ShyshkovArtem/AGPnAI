@@ -4,37 +4,41 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    EnemyStats enemy;
-    Transform player;
+    private EnemyStats enemy;
+    private Transform player;
+    private Rigidbody2D rb;
 
-    Vector2 knockbackVelocity;
-    float knockbackDuration;
+    private Vector2 knockbackVelocity;
+    private float knockbackDuration;
 
     void Start()
     {
         enemy = GetComponent<EnemyStats>();
         player = FindObjectOfType<PlayerMovement>().transform;
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
-        if (knockbackDuration > 0)  //if currently being knockedback, then procces the knockback
+        if (knockbackDuration > 0)
         {
-            transform.position += (Vector3)knockbackVelocity * Time.deltaTime;
-            knockbackDuration -= Time.deltaTime;
-        }
-        else    //Otherwise, move the enemy towards the player
-        {
-            transform .position = Vector2.MoveTowards(transform.position, player.transform.position, enemy.currentMoveSpeed * Time.deltaTime);
-        }
+            rb.velocity = knockbackVelocity;
+            knockbackDuration -= Time.fixedDeltaTime;
 
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, enemy.currentMoveSpeed * Time.deltaTime);    //move to the player
+            // Optional: Stop knockback early when time runs out
+            if (knockbackDuration <= 0)
+            {
+                rb.velocity = Vector2.zero;
+            }
+        }
+        else
+        {
+            Vector2 dir = (player.position - transform.position).normalized;
+            rb.velocity = dir * enemy.currentMoveSpeed;
+        }
     }
 
-
-    public void Knockback(Vector2 velocity, float duration)   //Should be called from other scripts to create knockback
+    public void Knockback(Vector2 velocity, float duration)
     {
         if (knockbackDuration > 0) return;
 

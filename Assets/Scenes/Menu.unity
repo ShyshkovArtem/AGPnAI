@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 363477850}
   - component: {fileID: 363477849}
   m_Layer: 5
-  m_Name: SelectSpear
+  m_Name: SelectRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Select Spear Character
+  m_text: Select Range Character
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Select Spike Character
+  m_text: 'Select Melee Character
 
 '
   m_isRightToLeft: 0
@@ -810,7 +810,7 @@ GameObject:
   - component: {fileID: 1874851543}
   - component: {fileID: 1874851542}
   m_Layer: 5
-  m_Name: SelectSpike
+  m_Name: SelectMelee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

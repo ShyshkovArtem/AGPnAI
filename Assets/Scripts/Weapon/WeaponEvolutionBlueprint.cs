@@ -9,4 +9,7 @@ public class WeaponEvolutionBlueprint : ScriptableObject
     public PassiveItemScriptableObject catalystPassiveItemData;
     public WeaponScriptableObject evolvedWeaponData;
     public GameObject evolvedWeapon;
+
+    public int requiredBaseWeaponLevel = 5;
+    public int requiredCatalystLevel = 1;
 }
