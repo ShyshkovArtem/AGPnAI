@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI currentMightDisplay;
     public TextMeshProUGUI currentProjectileSpeedDisplay;
     public TextMeshProUGUI currentMagnetDisplay;
+    public TextMeshProUGUI currentDamageReductionPercent;
 
 
     [Header("Results Screen Displays")]

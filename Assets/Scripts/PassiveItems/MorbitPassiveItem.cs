@@ -15,7 +15,7 @@ public class MorbitPassiveItem : PassiveItem
 
     void Heal()
     {
-        player.CurrentHealth = Mathf.Min(player.CurrentHealth + healAmount, player.BaseHealth);
+        player.RestoreHealth(healAmount);
     }
 
 

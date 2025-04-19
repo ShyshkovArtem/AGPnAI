@@ -29,7 +29,8 @@ public class PassiveItemScriptableObject : ScriptableObject
     Sprite icon;
     public Sprite Icon { get => icon; private set => icon = value; }
 
-    [SerializeField]
+    [SerializeField]    //Morbit
     float healthPerKill;
     public float HealthPerKill { get => healthPerKill; private set => healthPerKill = value; }
+
 }

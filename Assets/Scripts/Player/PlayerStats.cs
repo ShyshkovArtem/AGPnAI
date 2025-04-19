@@ -11,10 +11,12 @@ public class PlayerStats : MonoBehaviour
     //Current Stats
     float currentHealth;
     float currentRecovery;
-    public float currentMoveSpeed;
+    float currentMoveSpeed;
     float currentMight;
     float currentProjectileSpeed;
-    public float currentMagnet;
+    float currentMagnet;
+    float currentDamageReductionPercent;
+    float currentExperienceMultiplier;
 
     //Base Stats
     public float BaseMoveSpeed;
@@ -122,6 +124,27 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
+
+    public float CurrentDamageReductionPercent
+    {
+        get { return currentDamageReductionPercent; }
+        set
+        {
+            //Cheeck if the value has changed
+            if (currentDamageReductionPercent != value)
+            {
+                currentDamageReductionPercent = value;
+
+                //Update UI
+                if (GameManager.instance != null && GameManager.instance.currentDamageReductionPercent != null)
+                {
+                    GameManager.instance.currentDamageReductionPercent.text = "Damage Reduction: " + currentDamageReductionPercent + "%";
+                }
+            }
+        }
+    }
+
+    public float CurrentExperienceMultiplier { get; set; } = 1f;
     #endregion
 
     public ParticleSystem damageEffect;
@@ -173,6 +196,7 @@ public class PlayerStats : MonoBehaviour
         CurrentMight = characterData.Might;
         CurrentProjectileSpeed = characterData.ProjectileSpeed;
         CurrentMagnet = characterData.Magnet;
+        CurrentDamageReductionPercent = characterData.DamageReductionPercent;
 
         BaseMoveSpeed = CurrentMoveSpeed;
         BaseHealth = CurrentHealth;
@@ -193,6 +217,7 @@ public class PlayerStats : MonoBehaviour
         GameManager.instance.currentMightDisplay.text = "Might: " + currentMight;
         GameManager.instance.currentProjectileSpeedDisplay.text = "Projectile speed: " + currentProjectileSpeed;
         GameManager.instance.currentMagnetDisplay.text = "Magnet: " + currentMagnet;
+        GameManager.instance.currentDamageReductionPercent.text = "Damage reduction: " + currentDamageReductionPercent + "%";
 
         GameManager.instance.AssignChosenCharacterUI(characterData);
 
@@ -216,9 +241,10 @@ public class PlayerStats : MonoBehaviour
 
     public void IncreaseExperience(int amount)
     {
-        experience += amount;
-        LevelUpChecker();
+        int modifiedAmount = Mathf.RoundToInt(amount * CurrentExperienceMultiplier);
+        experience += modifiedAmount;
 
+        LevelUpChecker();
         UpdateExpBar();
     }
 
@@ -264,7 +290,8 @@ public class PlayerStats : MonoBehaviour
     {
         if (!isInvincible)
         {
-            CurrentHealth -= dmg;
+            float reducedDamage = dmg * (1 - CurrentDamageReductionPercent / 100f);
+            CurrentHealth -= reducedDamage;
 
             //If there is assigned damage effect, play it
             if (damageEffect) Instantiate(damageEffect, transform.position, Quaternion.identity);
@@ -311,6 +338,7 @@ public class PlayerStats : MonoBehaviour
             }
         }
 
+        UpdateHealthBar();
     }
 
 

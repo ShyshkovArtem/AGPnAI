@@ -21,3 +21,4 @@ MonoBehaviour:
   might: 1
   projectileSpeed: 2
   magnet: 2
+  damageReductionPercent: 0

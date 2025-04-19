@@ -47,4 +47,8 @@ public class CharacterScriptableObject : ScriptableObject
     [SerializeField]
     float magnet;
     public float Magnet { get => magnet; private set => magnet = value; }
+
+    [SerializeField]
+    float damageReductionPercent;
+    public float DamageReductionPercent { get => damageReductionPercent; private set => damageReductionPercent = value; }
 }
