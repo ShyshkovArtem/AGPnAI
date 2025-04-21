@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d86bfe0f260d7d49a8646e3279aa866, type: 3}
+  m_Name: AxeWeaponLvl2
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6259799442780589386, guid: 3a961ad9eeac1264182f6fd9bb3962ed, type: 3}
+  damage: 11
+  speed: 7
+  cooldownDuration: 4
+  pierce: 1
+  level: 2
+  nextLevelPrefab: {fileID: 6706194232080868139, guid: de8b32d52a92ec844abe66cd973fee8f, type: 3}
+  name: Axe of Havoc Level 2
+  description: Amount +1, Damage +3
+  icon: {fileID: 101235002, guid: 344b1447679995d42a5908172a268b34, type: 3}
+  evolvedUpgradeToRemove: 0

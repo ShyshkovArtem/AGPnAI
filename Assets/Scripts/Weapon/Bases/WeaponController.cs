@@ -33,4 +33,13 @@ public class WeaponController : MonoBehaviour
     {
         currentCooldown = weaponData.CooldownDuration;
     }
+
+    protected virtual void OnDestroy()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("Orb"))
+                Destroy(child.gameObject);
+        }
+    }
 }

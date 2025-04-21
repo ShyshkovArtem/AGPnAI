@@ -20,6 +20,6 @@ MonoBehaviour:
   level: 4
   nextLevelPrefab: {fileID: 8673356671845229549, guid: 191fed916bebc854f97cb4e8ff580bb0, type: 3}
   name: Spear Level 4
-  description: Damage increased by 5
+  description: Damage +5
   icon: {fileID: -2136110430, guid: e8ab59dbbc2943f47bea70ec3ce3891b, type: 3}
   evolvedUpgradeToRemove: 0

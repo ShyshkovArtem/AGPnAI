@@ -20,6 +20,6 @@ MonoBehaviour:
   level: 2
   nextLevelPrefab: {fileID: 8673356671845229549, guid: 14f65bf4d8caf29499d86251a4b4ee0e, type: 3}
   name: Spear Level 2
-  description: Speed is up by 5, damage by 2
+  description: Speed +5, Damage +2
   icon: {fileID: -2136110430, guid: e8ab59dbbc2943f47bea70ec3ce3891b, type: 3}
   evolvedUpgradeToRemove: 0

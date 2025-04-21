@@ -20,6 +20,6 @@ MonoBehaviour:
   level: 2
   nextLevelPrefab: {fileID: 6706194232080868139, guid: 3ea4cd39e6e67e048ad55f6eee19ef5c, type: 3}
   name: Spike Level 2
-  description: Cooldown reduced by 0.5 seconds
+  description: Cooldown -0.5 seconds
   icon: {fileID: 21300000, guid: b487a7a8bfe420a479d3a977f9111827, type: 3}
   evolvedUpgradeToRemove: 0

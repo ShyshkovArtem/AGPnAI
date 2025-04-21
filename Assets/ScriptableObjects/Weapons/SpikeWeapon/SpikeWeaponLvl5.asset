@@ -20,6 +20,6 @@ MonoBehaviour:
   level: 5
   nextLevelPrefab: {fileID: 0}
   name: Spike Level 5 (MAX)
-  description: Damage increased by 10
+  description: Damage +10
   icon: {fileID: 21300000, guid: b487a7a8bfe420a479d3a977f9111827, type: 3}
   evolvedUpgradeToRemove: 0
