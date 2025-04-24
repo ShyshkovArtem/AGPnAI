@@ -14,6 +14,12 @@ public class EnemyStats : MonoBehaviour
     float currentHealth;
     [HideInInspector]
     float currentDamage;
+    [HideInInspector]
+    float currentAttackCooldown;
+
+    [Header("Attack Settings")]
+    private float lastAttackTime = Mathf.NegativeInfinity;
+    public bool isAttacking;
 
     public float despawnDistance = 20f;
     Transform player;
@@ -26,11 +32,14 @@ public class EnemyStats : MonoBehaviour
     SpriteRenderer sr;
     EnemyMovement movement;
 
+    Animator animator;
+
     private void Awake()
     {
         currentMoveSpeed = enemyData.MoveSpeed;
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
+        currentAttackCooldown = enemyData.AttackCooldown;
     }
 
 
@@ -42,6 +51,8 @@ public class EnemyStats : MonoBehaviour
         originalColor = sr.color;
 
         movement = GetComponent<EnemyMovement>();
+
+        animator = GetComponent<Animator>();
     }
 
 
@@ -57,7 +68,13 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(float dmg, Vector2 sourcePosition, float knockbackForce = 5f, float knockDuration = 0.2f)
     {
         currentHealth -= dmg;
-        StartCoroutine(DamageFlash());
+
+        if (animator != null)
+        {
+            animator.SetTrigger("Hit");
+        }
+
+        //StartCoroutine(DamageFlash());
 
         //Create text pop up when enemy being attacked
         if (dmg > 0) GameManager.GenerateFloatingText(Mathf.FloorToInt(dmg).ToString(), transform);
@@ -78,6 +95,25 @@ public class EnemyStats : MonoBehaviour
     }
 
 
+    public void DealDamageToPlayer()
+    {
+        Debug.Log("Attempting to deal damage");
+
+        if (player == null) return;
+
+        // Only deal damage if player is still in range
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Player")); // Adjust radius
+        if (hit != null)
+        {
+            Debug.Log("Player hit!");
+            PlayerStats playerStats = hit.GetComponent<PlayerStats>();
+            playerStats?.TakeDamage(currentDamage);
+        }
+
+        lastAttackTime = Time.time;
+    }
+
+
     IEnumerator DamageFlash()   //Makes the enemy flash when taking damage
     {
         sr.color = damageColor;
@@ -89,7 +125,26 @@ public class EnemyStats : MonoBehaviour
 
     public void Kill()
     {
+        if (animator != null)
+        {
+            animator.SetTrigger("Death"); 
+        }
+
         OnAnyEnemyKilled?.Invoke();
+
+        // Stop movement
+        GetComponent<EnemyMovement>().enabled = false;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GetComponent<Collider2D>().enabled = false;
+
+        // Fade out + destroy after animation ends
+        StartCoroutine(KillAfterAnimation());
+    }
+
+
+    IEnumerator KillAfterAnimation()
+    {
+        yield return new WaitForSeconds(0.8f); // Duration of death animation
         StartCoroutine(KillFade());
     }
 
@@ -119,10 +174,26 @@ public class EnemyStats : MonoBehaviour
         //Ref the script from the collided collider and use TakeDamage()
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
-            player.TakeDamage(currentDamage);
+            if (Time.time >= lastAttackTime + currentAttackCooldown)
+            {
+                //PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
+                //player.TakeDamage(currentDamage);
+
+                lastAttackTime = Time.time;
+                isAttacking = true;
+
+                // Trigger attack animation
+                GetComponent<EnemyAnimation>().PlayAttack();
+            }
         }
     }
+
+
+    private void LateUpdate()
+    {
+        isAttacking = false; // Reset each frame unless re-triggered
+    }
+
 
     private void OnDestroy()
     {
