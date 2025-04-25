@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName ="CharacterScriptableObject", menuName = "ScriptableObjects/Character")]
+[CreateAssetMenu(fileName = "CharacterScriptableObject", menuName = "ScriptableObjects/Character")]
 public class CharacterScriptableObject : ScriptableObject
 {
     [SerializeField]
@@ -15,6 +15,9 @@ public class CharacterScriptableObject : ScriptableObject
     new string name;
     public string Name { get => name; private set => name = value; }
 
+    [SerializeField]
+    public RuntimeAnimatorController controller;
+    //public RuntimeAnimatorController Controller { get => controller; private set => controller = value; }
 
     [SerializeField]
     GameObject startingWeapon;

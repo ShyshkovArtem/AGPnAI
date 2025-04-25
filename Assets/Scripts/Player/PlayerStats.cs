@@ -181,6 +181,7 @@ public class PlayerStats : MonoBehaviour
     public Image expBar;
     public TextMeshProUGUI levelText;
 
+    PlayerAnimation playerAnimation;
 
     void Awake()
     {
@@ -200,8 +201,13 @@ public class PlayerStats : MonoBehaviour
 
         BaseMoveSpeed = CurrentMoveSpeed;
         BaseHealth = CurrentHealth;
+
         //Spawn the starting weapon
         SpawnWeapon(characterData.StartingWeapon);
+
+        //Setting new runtime animator 
+        playerAnimation = GetComponent<PlayerAnimation>();
+        if (characterData.controller) { playerAnimation.SetAnimatorController(characterData.controller); }  //Will use default sprite, if there is no reassigned 
     }
 
 

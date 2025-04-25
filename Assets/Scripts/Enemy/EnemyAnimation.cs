@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyAnimation : MonoBehaviour
 {
@@ -20,15 +18,17 @@ public class EnemyAnimation : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.x > player.position.x)
+        if (SceneManager.GetActiveScene().name != "TitleScreen")
         {
-            sr.flipX = true;
-        }
-        else
-        {
-            sr.flipX = false;
-        }
-
+            if (transform.position.x > player.position.x)
+            {
+                sr.flipX = true;
+            }
+            else
+            {
+                sr.flipX = false;
+            }
+        } 
     }
 
 

@@ -161,3 +161,6 @@ MonoBehaviour:
   - name: Red Potion
     itemPrefab: {fileID: 6092042324715443492, guid: df0c10341f5141642949627a9814e6b0, type: 3}
     dropRate: 50
+  - name: Treasure Chest
+    itemPrefab: {fileID: 4714586579438599600, guid: 2741c06846c833c40996601d749ad9c3, type: 3}
+    dropRate: 5
