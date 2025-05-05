@@ -4,34 +4,39 @@ using UnityEngine;
 
 public class PlayerCollector : MonoBehaviour
 {
-    PlayerStats player;
-    CircleCollider2D playerCollector;
-    public float pullSpeed;
-
+    [SerializeField] private float pullSpeed;
+    private PlayerAttributes playerAttributes;
+    private IColliderManager colliderManager;
 
     void Start()
     {
-        player = FindObjectOfType<PlayerStats>();
-        playerCollector = GetComponent<CircleCollider2D>();
+        playerAttributes = FindObjectOfType<PlayerAttributes>();
+        colliderManager = new CircleColliderManager(GetComponent<CircleCollider2D>(), playerAttributes);
     }
-
 
     void Update()
     {
-        playerCollector.radius = player.CurrentMagnet;
+        colliderManager.UpdateColliderRadius();
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Check if the other game object has the ICollectible interface 
-        if (collision.gameObject.TryGetComponent(out ICollectible collectible))
+        var collectible = collision.gameObject.GetComponent<ICollectible>();
+        if (collectible != null)
         {
-            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
-            Vector2 forceDirection = (transform.position - collision.transform.position).normalized;
-            rb.AddForce(forceDirection * pullSpeed);
-
-            collectible.Collect();
+            CollectItem(collision, collectible);
         }
     }
+
+    private void CollectItem(Collider2D collision, ICollectible collectible)
+    {
+        var itemForceApplier = new ItemForceApplier(collision.gameObject.GetComponent<Rigidbody2D>(), pullSpeed);
+        itemForceApplier.ApplyForce(transform.position);
+
+        collectible.Collect();
+    }
 }
+
+
+
+

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TreasureChest : MonoBehaviour
 {
-    InventoreManager inventory;
+    InventoryManager inventoryManager;
 
 
     private void Start()
     {
-        inventory = FindObjectOfType<InventoreManager>();
+        inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
 
@@ -25,13 +25,13 @@ public class TreasureChest : MonoBehaviour
 
     public void OpenTreasure()
     {
-        if (inventory.GetPossibleEvolutions().Count <= 0)
+        if (inventoryManager.GetPossibleEvolutions().Count <= 0)
         {
             Debug.Log("No avaible evolutions");
             return;
         }
 
-        WeaponEvolutionBlueprint toEvolve = inventory.GetPossibleEvolutions()[Random.Range(0, inventory.GetPossibleEvolutions().Count)];
-        inventory.EvolveWeapon(toEvolve);
+        WeaponEvolutionBlueprint toEvolve = inventoryManager.GetPossibleEvolutions()[Random.Range(0, inventoryManager.GetPossibleEvolutions().Count)];
+        inventoryManager.EvolveWeapon(toEvolve);
     }
 }

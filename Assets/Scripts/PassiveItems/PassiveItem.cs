@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PassiveItem : MonoBehaviour
 {
-    protected PlayerStats player;
+    protected PlayerAttributes playerAttributes;
+    protected PlayerStats playerStats;
     public PassiveItemScriptableObject passiveItemData;
 
 
@@ -16,7 +17,8 @@ public class PassiveItem : MonoBehaviour
 
     void Start()
     {
-        player = FindObjectOfType<PlayerStats>();
+        playerAttributes = FindObjectOfType<PlayerAttributes>();
+        playerStats = FindObjectOfType<PlayerStats>();
         ApplyModifier();
     }
 

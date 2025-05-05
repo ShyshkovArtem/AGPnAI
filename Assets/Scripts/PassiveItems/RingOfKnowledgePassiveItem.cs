@@ -6,7 +6,7 @@ public class RingOfKnowledgePassiveItem : PassiveItem
 {
     protected override void ApplyModifier()
     {
-        player.CurrentExperienceMultiplier = passiveItemData.Multipler;
+        playerAttributes.CurrentExperienceMultiplier = passiveItemData.Multipler;
     }
 
 }

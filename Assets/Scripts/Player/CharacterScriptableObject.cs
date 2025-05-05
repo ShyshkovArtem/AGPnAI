@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -12,12 +10,12 @@ public class CharacterScriptableObject : ScriptableObject
 
 
     [SerializeField]
-    new string name;
-    public string Name { get => name; private set => name = value; }
+    string characterName;
+    public string CharacterName { get => characterName; private set => characterName = value; }
 
     [SerializeField]
-    public RuntimeAnimatorController controller;
-    //public RuntimeAnimatorController Controller { get => controller; private set => controller = value; }
+    RuntimeAnimatorController controller;
+    public RuntimeAnimatorController Controller { get => controller; private set => controller = value; }
 
     [SerializeField]
     GameObject startingWeapon;

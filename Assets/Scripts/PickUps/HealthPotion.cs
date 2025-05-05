@@ -17,7 +17,7 @@ public class HealthPotion : Pickup
             base.Collect();
         }
 
-        PlayerStats player = FindObjectOfType<PlayerStats>();
-        player.RestoreHealth(healthToRestore);
+        PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+        playerStats.Heal(healthToRestore);
     }
 }

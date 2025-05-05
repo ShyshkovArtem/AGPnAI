@@ -3,10 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class EnemyAnimation : MonoBehaviour
 {
-    Transform player;
-    SpriteRenderer sr;
-    Animator animator;
-    EnemyStats stats;
+    private Transform player;
+    private SpriteRenderer sr;
+    private Animator animator;
+    private EnemyStats stats;
 
     void Start()
     {

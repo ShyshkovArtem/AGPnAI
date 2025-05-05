@@ -6,6 +6,6 @@ public class ArmorPassiveItem : PassiveItem
 {
     protected override void ApplyModifier()
     {
-        player.CurrentDamageReductionPercent = passiveItemData.Multipler;
+        playerAttributes.CurrentDamageReductionPercent = passiveItemData.Multipler;
     }
 }

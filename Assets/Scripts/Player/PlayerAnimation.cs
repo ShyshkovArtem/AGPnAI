@@ -1,52 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    Animator am;
-    PlayerMovement pm;
-    SpriteRenderer sr;
+    private Animator animator;
+    private PlayerMovement playerMovement;
+    private SpriteRenderer spriteRenderer;
+
+    private static readonly int IsMoving = Animator.StringToHash("IsMoving");
 
 
     void Start()
     {
-        am = GetComponent<Animator>();
-        pm = GetComponent<PlayerMovement>();
-        sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+
+        if (animator == null)
+            Debug.LogError("Animator component missing from Player!");
+        if (playerMovement == null)
+            Debug.LogError("PlayerMovement component missing from Player!");
+        if (spriteRenderer == null)
+            Debug.LogError("SpriteRenderer component missing from Player!");
     }
 
-    
+
     void Update()
     {
-        if (pm.moveDir.x != 0 || pm.moveDir.y != 0)
+        UpdateAnimation();
+    }
+
+
+    void UpdateAnimation()
+    {
+        if (playerMovement.moveDir.x != 0 || playerMovement.moveDir.y != 0)
         {
-            am.SetBool("IsMoving", true);
+            animator.SetBool(IsMoving, true);
             SpriteDirectionCheck();
         }
         else
         {
-            am.SetBool("IsMoving", false);
+            animator.SetBool(IsMoving, false);
         }
     }
 
 
     void SpriteDirectionCheck()
     {
-        if (pm.lastHorizontalVector < 0)
-        {
-            sr.flipX = true;
-        }
-        else
-        {
-            sr.flipX = false;   
-        }
+        spriteRenderer.flipX = playerMovement.lastHorizontalVector < 0;
     }
 
 
     public void SetAnimatorController(RuntimeAnimatorController controller)
     {
-        if (!am) am = GetComponent<Animator>();
-        am.keepAnimatorStateOnDisable = controller;
+        if (animator == null) animator = GetComponent<Animator>();
+        animator.runtimeAnimatorController = controller;
     }
 }
+

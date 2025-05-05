@@ -255,7 +255,7 @@ public class GameManager : MonoBehaviour
     public void AssignChosenCharacterUI(CharacterScriptableObject chosenCharacterData)
     {
         chosenCharacterImage.sprite = chosenCharacterData.Icon;
-        chosenCharacterName.text = chosenCharacterData.Name;
+        chosenCharacterName.text = chosenCharacterData.CharacterName;
     }
 
     public void AssignReachedLvlUI(int recheadLvlData)
