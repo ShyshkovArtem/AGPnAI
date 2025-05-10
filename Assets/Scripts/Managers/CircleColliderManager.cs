@@ -2,18 +2,28 @@ using UnityEngine;
 
 public class CircleColliderManager : IColliderManager
 {
-    private CircleCollider2D playerCollider;
-    private PlayerAttributes playerAttributes;
+    private CircleCollider2D _playerCollider;
+    private PlayerAttributes _playerAttributes;
 
     public CircleColliderManager(CircleCollider2D collider, PlayerAttributes attributes)
     {
-        playerCollider = collider;
-        playerAttributes = attributes;
+        _playerCollider = collider;
+        _playerAttributes = attributes;
     }
 
     public void UpdateColliderRadius()
     {
-        playerCollider.radius = playerAttributes.CurrentMagnet;
+        if (_playerCollider == null)
+        {
+            Debug.LogWarning("CircleCollider2D reference is null.");
+            return;
+        }
+        if (_playerAttributes == null)
+        {
+            Debug.LogWarning("PlayerAttributes reference is null.");
+            return;
+        }
+        _playerCollider.radius = _playerAttributes.CurrentMagnet;
     }
 }
 

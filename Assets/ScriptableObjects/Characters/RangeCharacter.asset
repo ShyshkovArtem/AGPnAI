@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RangeCharacter
   m_EditorClassIdentifier: 
   icon: {fileID: -952371306, guid: 461c46e65bc4215429643b9bc823ae05, type: 3}
-  name: Range Character
+  characterName: 
   controller: {fileID: 0}
   startingWeapon: {fileID: 8673356671845229549, guid: bfeb37c8c0954c746a755336af094aab, type: 3}
   maxHealth: 400
@@ -23,3 +23,4 @@ MonoBehaviour:
   projectileSpeed: 2
   magnet: 2.5
   damageReductionPercent: 0
+  experienceMultiplier: 1

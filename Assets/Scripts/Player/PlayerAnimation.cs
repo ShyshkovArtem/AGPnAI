@@ -1,60 +1,70 @@
 using UnityEngine;
 
+/// Handles player animations by updating Animator parameters
+/// and sprite orientation based on movement input.
+
 public class PlayerAnimation : MonoBehaviour
 {
-    private Animator animator;
-    private PlayerMovement playerMovement;
-    private SpriteRenderer spriteRenderer;
+    [Header("Dependencies")]
+    [Tooltip("Animator controlling the player animations.")]
+    [SerializeField] private Animator _animator;
 
-    private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+    [Tooltip("Component providing movement direction.")]
+    [SerializeField] private PlayerMovement _movement;
 
+    [Tooltip("SpriteRenderer for flipping the sprite.")]
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
-    void Start()
+    private static readonly int IsMovingHash = Animator.StringToHash("IsMoving");
+
+    private bool _wasMoving;
+
+    private void Awake()
     {
-        animator = GetComponent<Animator>();
-        playerMovement = GetComponent<PlayerMovement>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
-
-        if (animator == null)
-            Debug.LogError("Animator component missing from Player!");
-        if (playerMovement == null)
-            Debug.LogError("PlayerMovement component missing from Player!");
-        if (spriteRenderer == null)
-            Debug.LogError("SpriteRenderer component missing from Player!");
+        // Resolve dependencies or warn
+        _animator = _animator ?? GetComponent<Animator>() ?? WarnMissing<Animator>();
+        _movement = _movement ?? GetComponent<PlayerMovement>() ?? WarnMissing<PlayerMovement>();
+        _spriteRenderer = _spriteRenderer ?? GetComponent<SpriteRenderer>() ?? WarnMissing<SpriteRenderer>();
     }
 
-
-    void Update()
+    private void Update()
     {
-        UpdateAnimation();
-    }
+        Vector2 dir = _movement.MoveDirection;
+        bool isMoving = dir.sqrMagnitude > 0f;
 
-
-    void UpdateAnimation()
-    {
-        if (playerMovement.moveDir.x != 0 || playerMovement.moveDir.y != 0)
+        // Update Animator only when movement state changes
+        if (isMoving != _wasMoving)
         {
-            animator.SetBool(IsMoving, true);
-            SpriteDirectionCheck();
+            _wasMoving = isMoving;
+            _animator.SetBool(IsMovingHash, isMoving);
         }
-        else
+
+        // Flip sprite only on horizontal input; retain last direction when idle
+        if (dir.x > 0f && _spriteRenderer.flipX)
         {
-            animator.SetBool(IsMoving, false);
+            _spriteRenderer.flipX = false;
+        }
+        else if (dir.x < 0f && !_spriteRenderer.flipX)
+        {
+            _spriteRenderer.flipX = true;
         }
     }
 
-
-    void SpriteDirectionCheck()
-    {
-        spriteRenderer.flipX = playerMovement.lastHorizontalVector < 0;
-    }
-
-
+    /// <summary>
+    /// Allows swapping animator controller at runtime.
+    /// </summary>
     public void SetAnimatorController(RuntimeAnimatorController controller)
     {
-        if (animator == null) animator = GetComponent<Animator>();
-        animator.runtimeAnimatorController = controller;
+        if (_animator == null)
+            _animator = GetComponent<Animator>() ?? WarnMissing<Animator>();
+        _animator.runtimeAnimatorController = controller;
+    }
+
+    // Utility for logging missing components
+    private T WarnMissing<T>() where T : class
+    {
+        Debug.LogError($"{typeof(T).Name} is missing on {gameObject.name}", this);
+        return null;
     }
 }
 

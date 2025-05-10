@@ -198,8 +198,16 @@ public class EnemyStats : MonoBehaviour
     private void OnDestroy()
     {
         EnemySpawner es = FindObjectOfType<EnemySpawner>();
-        es.OnEnemyKill();
+        if (es != null)
+        {
+            es.OnEnemyKill();
+        }
+        else
+        {
+            Debug.LogWarning("EnemySpawner not found in the scene.");
+        }
     }
+
 
 
     void ReturnEnemy()

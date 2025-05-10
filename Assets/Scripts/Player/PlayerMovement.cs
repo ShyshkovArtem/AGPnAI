@@ -2,81 +2,97 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles player movement and input. Keeps last moved direction for animations or facing logic.
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
-    // Movement
-    [HideInInspector] public Vector2 moveDir;
-    [HideInInspector] public float lastHorizontalVector;
-    [HideInInspector] public float lastVerticalVector;
-    [HideInInspector] public Vector2 lastMovedVector;
+    // === Constants ===
+    private const string HorizontalAxis = "Horizontal";
+    private const string VerticalAxis = "Vertical";
 
-    // References
-    private Rigidbody2D rb;
-    private PlayerAttributes playerAttributes;
+    // === Movement State ===
+    [HideInInspector] public Vector2 MoveDirection { get; private set; }
+    [HideInInspector] public Vector2 LastMovedDirection { get; private set; }
 
+    private float _lastHorizontalInput;
+    private float _lastVerticalInput;
 
-    void Start()
+    // === References ===
+    private Rigidbody2D _rigidbody;
+    private PlayerAttributes _attributes;
+
+    // === Delegates (Strategy-like abstraction for input source) ===
+    private System.Func<float> _getHorizontalInput;
+    private System.Func<float> _getVerticalInput;
+
+    private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        playerAttributes = GetComponent<PlayerAttributes>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _attributes = GetComponent<PlayerAttributes>();
 
-        if (rb == null)
-            Debug.LogError("Rigidbody2D component missing from Player!");
-        if (playerAttributes == null)
-            Debug.LogError("PlayerAttributes component missing from Player!");
+        if (_rigidbody == null)
+            Debug.LogWarning("Missing Rigidbody2D on Player");
+        if (_attributes == null)
+            Debug.LogWarning("Missing PlayerAttributes on Player");
 
+        // Inject input source (can be replaced for testing or alternate controls)
+        _getHorizontalInput = () => Input.GetAxisRaw(HorizontalAxis);       //GPT recommended, could be useful, but later
+        _getVerticalInput = () => Input.GetAxisRaw(VerticalAxis);
 
-        lastMovedVector = Vector2.right;
+        LastMovedDirection = Vector2.right;
     }
 
-
-    void Update()
+    private void Update()
     {
-        if (GameManager.instance.isGameOver)
+        if (IsGameOver())
             return;
 
         HandleInput();
     }
 
-
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (GameManager.instance.isGameOver)
+        if (IsGameOver())
             return;
 
-        Move();
+        MovePlayer();
     }
 
-
-    void HandleInput()
+    private void HandleInput()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+        float moveX = _getHorizontalInput();
+        float moveY = _getVerticalInput();
 
-        moveDir = new Vector2(moveX, moveY).normalized;
+        MoveDirection = new Vector2(moveX, moveY).normalized;
 
-        if (moveDir.x != 0)
+        if (MoveDirection.x != 0)
         {
-            lastHorizontalVector = moveDir.x;
-            lastMovedVector = new Vector2(lastHorizontalVector, 0f);
+            _lastHorizontalInput = MoveDirection.x;
+            LastMovedDirection = new Vector2(_lastHorizontalInput, 0f);
         }
 
-        if (moveDir.y != 0)
+        if (MoveDirection.y != 0)
         {
-            lastVerticalVector = moveDir.y;
-            lastMovedVector = new Vector2(0f, lastVerticalVector);
+            _lastVerticalInput = MoveDirection.y;
+            LastMovedDirection = new Vector2(0f, _lastVerticalInput);
         }
 
-        if (moveDir.x != 0 && moveDir.y != 0)
+        if (MoveDirection.x != 0 && MoveDirection.y != 0)
         {
-            lastMovedVector = new Vector2(lastHorizontalVector, lastVerticalVector);
+            LastMovedDirection = new Vector2(_lastHorizontalInput, _lastVerticalInput);
         }
     }
 
-
-    void Move()
+    private void MovePlayer()
     {
-        rb.velocity = moveDir * playerAttributes.CurrentMoveSpeed;
+        _rigidbody.velocity = MoveDirection * _attributes.CurrentMoveSpeed;
+    }
+
+    private bool IsGameOver()
+    {
+        return GameManager.instance != null && GameManager.instance.isGameOver;
     }
 }
+
 

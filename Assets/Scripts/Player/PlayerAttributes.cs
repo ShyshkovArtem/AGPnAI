@@ -1,213 +1,143 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 
+/// Holds runtime player stats and broadcasts changes via events.
+/// Separates data, logic, and UI update concerns.
+
 public class PlayerAttributes : MonoBehaviour
 {
-    CharacterScriptableObject characterData;
+    [Header("Character Data")]
+    [Tooltip("ScriptableObject defining base stat values.")]
+    [SerializeField] private CharacterScriptableObject _characterData;
 
-    // Attributes
-    private float currentHealth;
-    private float currentRecovery;
-    private float currentMoveSpeed;
-    private float currentMight;
-    private float currentProjectileSpeed;
-    private float currentMagnet;
-    private float currentDamageReductionPercent;
-    private float currentExperienceMultiplier;
+    // Base stats (from ScriptableObject)
+    public float BaseHealth { get; private set; }
+    public float BaseRecovery { get; private set; }
+    public float BaseMoveSpeed { get; private set; }
+    public float BaseMight { get; private set; }
+    public float BaseProjectileSpeed { get; private set; }
+    public float BaseMagnet { get; private set; }
+    public float BaseDamageReductionPercent { get; private set; }
+    public float BaseExperienceMultiplier { get; private set; }
 
+    // Current stats
+    private float _currentHealth;
+    private float _currentRecovery;
+    private float _currentMoveSpeed;
+    private float _currentMight;
+    private float _currentProjectileSpeed;
+    private float _currentMagnet;
+    private float _currentDamageReductionPercent;
+    private float _currentExperienceMultiplier;
 
-    // Base stats 
-    public float baseHealth;
-    public float baseRecovery;
-    public float baseMoveSpeed;
-    public float baseMight;
-    public float baseProjectileSpeed;
-    public float baseMagnet;
-    public float baseDamageReductionPercent;
-    public float baseExperienceMultiplier;
-
-
-    #region Current Stats Properties
     public float CurrentHealth
     {
-        get { return currentHealth; }
-        set
-        {
-            //Cheeck if the value has changed
-            if (currentHealth != value)
-            {
-                currentHealth = value;
-            }
-            if (GameManager.instance != null)
-            {
-                GameManager.instance.currentHealthDisplay.text = "Health: " + currentHealth;
-            }
-        }
+        get => _currentHealth;
+        set => SetStat(ref _currentHealth, value, HealthChanged, "Health");
     }
-
     public float CurrentRecovery
     {
-        get { return currentRecovery; }
-        set
-        {
-            //Cheeck if the value has changed
-            if (currentRecovery != value)
-            {
-                currentRecovery = value;
-            }
-            if (GameManager.instance != null)
-            {
-                GameManager.instance.currentRecoveryDisplay.text = "Recovery: " + currentRecovery;
-            }
-        }
+        get => _currentRecovery;
+        set => SetStat(ref _currentRecovery, value, RecoveryChanged, "Recovery");
     }
-
     public float CurrentMoveSpeed
     {
-        get { return currentMoveSpeed; }
-        set
-        {
-            //Cheeck if the value has changed
-            if (currentMoveSpeed != value)
-            {
-                currentMoveSpeed = value;
-            }
-            if (GameManager.instance != null)
-            {
-                GameManager.instance.currentMoveSpeedDisplay.text = "Move speed: " + currentMoveSpeed;
-            }
-        }
+        get => _currentMoveSpeed;
+        set => SetStat(ref _currentMoveSpeed, value, MoveSpeedChanged, "Move Speed");
     }
-
     public float CurrentMight
     {
-        get { return currentMight; }
-        set
-        {
-            //Cheeck if the value has changed
-            if (currentMight != value)
-            {
-                currentMight = value;
-            }
-            if (GameManager.instance != null)
-            {
-                GameManager.instance.currentMightDisplay.text = "Might: " + currentMight;
-            }
-        }
+        get => _currentMight;
+        set => SetStat(ref _currentMight, value, MightChanged, "Might");
     }
-
     public float CurrentProjectileSpeed
     {
-        get { return currentProjectileSpeed; }
-        set
-        {
-            //Cheeck if the value has changed
-            if (currentProjectileSpeed != value)
-            {
-                currentProjectileSpeed = value;
-            }
-            if (GameManager.instance != null)
-            {
-                GameManager.instance.currentProjectileSpeedDisplay.text = "Projectile speed: " + currentProjectileSpeed;
-            }
-        }
+        get => _currentProjectileSpeed;
+        set => SetStat(ref _currentProjectileSpeed, value, ProjectileSpeedChanged, "Projectile Speed");
     }
-
     public float CurrentMagnet
     {
-        get { return currentMagnet; }
-        set
-        {
-            //Cheeck if the value has changed
-            if (currentMagnet != value)
-            {
-                currentMagnet = value;
-            }
-            if (GameManager.instance != null)
-            {
-                GameManager.instance.currentMagnetDisplay.text = "Magnet: " + currentMagnet;
-            }
-        }
+        get => _currentMagnet;
+        set => SetStat(ref _currentMagnet, value, MagnetChanged, "Magnet");
     }
-
     public float CurrentDamageReductionPercent
     {
-        get { return currentDamageReductionPercent; }
-        set
-        {
-            //Cheeck if the value has changed
-            if (currentDamageReductionPercent != value)
-            {
-                currentDamageReductionPercent = value;
-
-                //Update UI
-                if (GameManager.instance != null && GameManager.instance.currentDamageReductionPercent != null)
-                {
-                    GameManager.instance.currentDamageReductionPercent.text = "Damage Reduction: " + currentDamageReductionPercent + "%";
-                }
-            }
-        }
+        get => _currentDamageReductionPercent;
+        set => SetStat(ref _currentDamageReductionPercent, value, DamageReductionChanged, "Damage Reduction");
+    }
+    public float CurrentExperienceMultiplier
+    {
+        get => _currentExperienceMultiplier;
+        set => SetStat(ref _currentExperienceMultiplier, value, ExperienceMultiplierChanged, "Exp Multiplier");
     }
 
-    public float CurrentExperienceMultiplier { get; set; } = 1f;
-    #endregion
+    // Events - broadcast stat name and new value (or specialized if desired)
+    public event Action<float> HealthChanged;
+    public event Action<float> RecoveryChanged;
+    public event Action<float> MoveSpeedChanged;
+    public event Action<float> MightChanged;
+    public event Action<float> ProjectileSpeedChanged;
+    public event Action<float> MagnetChanged;
+    public event Action<float> DamageReductionChanged;
+    public event Action<float> ExperienceMultiplierChanged;
 
+    // Generic setter with change check and event invoke
+    private void SetStat(ref float field, float value, Action<float> changedEvent, string statName)
+    {
+        if (Mathf.Approximately(field, value)) return;
+        field = value;
+        changedEvent?.Invoke(field);
+    }
 
-    InventoryManager inventoryManager;
+    private InventoryManager _inventoryManager;
 
     private void Awake()
     {
-        characterData = CharacterSelector.GetData();
+        _characterData = CharacterSelector.GetData();
         CharacterSelector.instance.DestroySingleton();
+
+        if (_characterData == null)
+            Debug.LogError("CharacterData is not assigned", this);
+
+        // Cache InventoryManager
+        _inventoryManager = GetComponent<InventoryManager>();
     }
 
     private void Start()
     {
-        Initialize(characterData);
-        UpdateStatsDisplay();
-        GameManager.instance.AssignChosenCharacterUI(characterData);
+        Initialize(_characterData);
     }
 
 
-    public void Initialize(CharacterScriptableObject characterData)         // Initialize from CharacterData
+    /// Initializes base and current stats from the provided CharacterData, and spawns starting weapon.
+    public void Initialize(CharacterScriptableObject data)
     {
-        currentHealth = characterData.MaxHealth;
-        currentRecovery = characterData.Recovery;
-        currentMoveSpeed = characterData.MoveSpeed;
-        currentMight = characterData.Might;
-        currentProjectileSpeed = characterData.ProjectileSpeed;
-        currentMagnet = characterData.Magnet;
-        currentDamageReductionPercent = characterData.DamageReductionPercent;
-        currentExperienceMultiplier = 1f;
+        if (data == null) return;
 
-        baseHealth = currentHealth;
-        baseRecovery = currentRecovery;
-        baseMoveSpeed = currentMoveSpeed;
-        baseMight = currentMight;
-        baseProjectileSpeed = currentProjectileSpeed;
-        baseMagnet = currentMagnet;
-        baseDamageReductionPercent = currentDamageReductionPercent;
-        baseExperienceMultiplier = 1f;
+        // Load base values
+        BaseHealth = data.MaxHealth;
+        BaseRecovery = data.Recovery;
+        BaseMoveSpeed = data.MoveSpeed;
+        BaseMight = data.Might;
+        BaseProjectileSpeed = data.ProjectileSpeed;
+        BaseMagnet = data.Magnet;
+        BaseDamageReductionPercent = data.DamageReductionPercent;
+        BaseExperienceMultiplier = data.ExperienceMultiplier;
 
+        // Set current to base
+        CurrentHealth = BaseHealth;
+        CurrentRecovery = BaseRecovery;
+        CurrentMoveSpeed = BaseMoveSpeed;
+        CurrentMight = BaseMight;
+        CurrentProjectileSpeed = BaseProjectileSpeed;
+        CurrentMagnet = BaseMagnet;
+        CurrentDamageReductionPercent = BaseDamageReductionPercent;
+        CurrentExperienceMultiplier = BaseExperienceMultiplier;
 
-        //Spawn the starting weapon
-        inventoryManager = GetComponent<InventoryManager>();
-        inventoryManager.SpawnWeapon(characterData.StartingWeapon);
-    }
-
-
-    public void UpdateStatsDisplay()
-    {
-        //Set the current stats display
-        GameManager.instance.currentHealthDisplay.text = "Health: " + currentHealth;
-        GameManager.instance.currentRecoveryDisplay.text = "Recovery: " + currentRecovery;
-        GameManager.instance.currentMoveSpeedDisplay.text = "Move speed: " + currentMoveSpeed;
-        GameManager.instance.currentMightDisplay.text = "Might: " + currentMight;
-        GameManager.instance.currentProjectileSpeedDisplay.text = "Projectile speed: " + currentProjectileSpeed;
-        GameManager.instance.currentMagnetDisplay.text = "Magnet: " + currentMagnet;
-        GameManager.instance.currentDamageReductionPercent.text = "Damage reduction: " + currentDamageReductionPercent + "%";
+        // Spawn weapon
+        if (_inventoryManager != null)
+            _inventoryManager.SpawnWeapon(data.StartingWeapon);
     }
 }
-

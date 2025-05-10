@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MeleeCharacter
   m_EditorClassIdentifier: 
   icon: {fileID: -952371306, guid: 461c46e65bc4215429643b9bc823ae05, type: 3}
-  name: Melee Character
+  characterName: 
   controller: {fileID: 0}
   startingWeapon: {fileID: 6706194232080868139, guid: 8685f051531875e428e41ad045ab18f8, type: 3}
   maxHealth: 600
@@ -23,3 +23,4 @@ MonoBehaviour:
   projectileSpeed: 0
   magnet: 2
   damageReductionPercent: 10
+  experienceMultiplier: 1

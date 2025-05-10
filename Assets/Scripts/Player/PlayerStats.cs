@@ -1,84 +1,91 @@
-using UnityEditor.U2D.Animation;
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 
+// Orchestrates player health, damage, healing, and death events
 public class PlayerStats : MonoBehaviour
 {
-    private PlayerAttributes playerAttributes;
-    private PlayerInvincibility playerInvincibility;
-    private PlayerExperience playerExperience;
-    private InventoryManager inventoryManager;
+    // === Dependencies ===
+    private IHealthManager _healthManager;
+    private IInvincibilityManager _invincibilityManager;
+    private PlayerAttributes _attributes;
+    private InventoryManager _inventory;
+    private PlayerExperience _experience;
 
+    [Header("Effects")]
     public ParticleSystem damageEffect;
 
-    [Header("UI")]
-    public Image healthBar;
+    // Events for decoupled handling
+    public event Action<float, float> HealthChanged;
+    public event Action OnDeath;
 
-    void Awake()
+    private void Awake()
     {
-        playerAttributes = GetComponent<PlayerAttributes>();
-        playerInvincibility = GetComponent<PlayerInvincibility>();
-        playerExperience = GetComponent<PlayerExperience>();
-        inventoryManager = GetComponent<InventoryManager>();
-
-        UpdateHealthBar();
+        _healthManager = GetComponent<IHealthManager>() ?? WarnMissing<IHealthManager>();
+        _invincibilityManager = GetComponent<IInvincibilityManager>() ?? WarnMissing<IInvincibilityManager>();
+        _attributes = GetComponent<PlayerAttributes>() ?? WarnMissing<PlayerAttributes>();
+        _inventory = GetComponent<InventoryManager>() ?? WarnMissing<InventoryManager>();
+        _experience = GetComponent<PlayerExperience>() ?? WarnMissing<PlayerExperience>();
     }
-
 
     private void Start()
     {
-
+        PublishHealthChange();                          // Initialize UI with current values
     }
 
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(float rawDamage)             // Applies damage to the player, triggers effects and events.
     {
-        if (playerInvincibility.CanTakeDamage())
-        {
-            float reducedDamage = dmg * (1 - playerAttributes.CurrentDamageReductionPercent / 100f);
-            playerAttributes.CurrentHealth -= reducedDamage;
+        if (!_invincibilityManager.CanTakeDamage())
+            return;
 
-            //If there is assigned damage effect, play it
-            if (damageEffect) Instantiate(damageEffect, transform.position, Quaternion.identity);
+        float reduced = DamageCalculator.Reduce(rawDamage, _attributes.CurrentDamageReductionPercent);
+        _healthManager.TakeDamage(reduced);
 
-            playerInvincibility.TriggerInvincibility();
+        SpawnDamageEffect();
+        _invincibilityManager.TriggerInvincibility();
 
+        PublishHealthChange();
 
-            if (playerAttributes.CurrentHealth <= 0)
-            {
-                Die();
-            }
-
-            UpdateHealthBar();
-        }
+        if (_healthManager.GetCurrentHealth() <= 0f)
+            HandleDeath();
     }
 
 
-    void UpdateHealthBar()
+    public void Heal(float amount)                      // Heals the player and notifies listeners.
     {
-        healthBar.fillAmount = playerAttributes.CurrentHealth / playerAttributes.baseHealth;
+        _healthManager.Heal(amount);
+        PublishHealthChange();
     }
 
 
-    public void Heal(float amount)
+    private void SpawnDamageEffect()
     {
-        playerAttributes.CurrentHealth = Mathf.Min(playerAttributes.CurrentHealth + amount, playerAttributes.baseHealth);
-        UpdateHealthBar();
+        if (damageEffect != null)
+            Instantiate(damageEffect, transform.position, Quaternion.identity);
     }
 
 
-    private void Die()
+    private void PublishHealthChange()
     {
-        if (!GameManager.instance.isGameOver)
-        {
-            GameManager.instance.GameOver();
-            GameManager.instance.AssignReachedLvlUI(playerExperience.level);
-            GameManager.instance.AssignChosenWeaponsAndPassiveItemsUI(inventoryManager.weaponUISlots, inventoryManager.passiveItemUISlots);
-        }
+        HealthChanged?.Invoke(_healthManager.GetCurrentHealth(), _healthManager.GetMaxHealth());
+    }
 
-        Debug.Log("Player dead");
+
+    private void HandleDeath()
+    {
+        OnDeath?.Invoke();
+    }
+
+
+    // Logs a warning if a required component is missing
+    private T WarnMissing<T>() where T : class
+    {
+        Debug.LogWarning($"{typeof(T).Name} is missing on {gameObject.name}", this);
+        return null;
     }
 }
+
+
 
 
 

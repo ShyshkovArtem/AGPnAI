@@ -15,6 +15,6 @@ public class SpearController : WeaponController
         base.Attack();
         GameObject spawnedSpear = Instantiate(weaponData.Prefab);
         spawnedSpear.transform.position = transform.position; //Assigned spawned spear position to the player
-        spawnedSpear.GetComponent<SpearBehaviour>().DirectionChecker(pm.lastMovedVector);  //Reference plater move direction
+        spawnedSpear.GetComponent<SpearBehaviour>().DirectionChecker(pm.LastMovedDirection);  //Reference plater move direction
     }
 }

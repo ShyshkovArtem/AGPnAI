@@ -39,7 +39,7 @@ public class EnemyMovement : MonoBehaviour
             rb.velocity = dir * enemy.currentMoveSpeed;
         }
 
-        if (animator != null)
+        if (animator != null && AnimatorHasParameter("IsMoving"))
         {
             animator.SetBool("IsMoving", rb.velocity.magnitude > 0.1f);
         }
@@ -51,5 +51,19 @@ public class EnemyMovement : MonoBehaviour
 
         knockbackDuration = duration;
         knockbackVelocity = velocity;
+    }
+
+    private bool AnimatorHasParameter(string paramName)
+    {
+        // Check if the parameter exists in the Animator
+        AnimatorControllerParameter[] parameters = animator.parameters;
+        foreach (var parameter in parameters)
+        {
+            if (parameter.name == paramName)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -52,4 +52,8 @@ public class CharacterScriptableObject : ScriptableObject
     [SerializeField]
     float damageReductionPercent;
     public float DamageReductionPercent { get => damageReductionPercent; private set => damageReductionPercent = value; }
+
+    [SerializeField]
+    float experienceMultiplier;
+    public float ExperienceMultiplier { get => experienceMultiplier; private set => experienceMultiplier = value; }
 }

@@ -1,95 +1,119 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
+
+[Serializable]
+public class LevelRange
+{
+    public int Start;
+    public int End;
+    public int CapIncrease;
+}
+
+// Experience gain and level progression
 public class PlayerExperience : MonoBehaviour
 {
     [Header("Exp/Lvl")]
-    public int experience = 0;
-    public int level = 1;
-    public int experienceCap;
+    [SerializeField] private int _currentExp;
+    [SerializeField] private int _currentLevel = 1;
+    [SerializeField] private int _expCap;
 
-    //Class for defining a level range and the corresponding exp cap for that range
-    [System.Serializable]
-    public class LevelRange
+    public int CurrentExp
     {
-        public int startLevel;
-        public int endLevel;
-        public int experienceCapIncrease;
+        get => _currentExp;
+        private set => _currentExp = value;
+    }
+    public int CurrentLevel
+    {
+        get => _currentLevel;
+        private set => _currentLevel = value;
+    }
+    public int ExpCap
+    {
+        get => _expCap;
+        private set => _expCap = value;
     }
 
-    [Header("UI")]
-    public Image expBar;
-    public TextMeshProUGUI levelText;
 
-    public List<LevelRange> levelRanges;
+    [Header("Level Ranges")]
+    [SerializeField] private List<LevelRange> _levelRanges;
 
-    //References
-    private PlayerAttributes playerAttributes;
+    // Events for decoupled handling
+    public event Action<int, int> ExpChanged;        // (currentExp, expCap)
+    public event Action<int> LevelReached;            // new level reached
+
+    private PlayerAttributes _attributes;
 
 
-    void Awake()
+    private void Awake()
     {
-        playerAttributes = GetComponent<PlayerAttributes>();
+        _attributes = GetComponent<PlayerAttributes>() ?? WarnMissing<PlayerAttributes>();
     }
 
 
     private void Start()
     {
-        experienceCap = levelRanges[0].experienceCapIncrease;
-
-        UpdateExpBar();
-        UpdateLevelText();
+        ExpCap = DetermineCapForLevel(CurrentLevel);
+        PublishExpChange();
+        PublishLevelReached();
     }
 
 
-    public void GainExperience(int amount)
+    // Add experience, apply multiplier, and check for level up.
+    public void GainExperience(int baseAmount)
     {
-        int modifiedAmount = Mathf.RoundToInt(amount * playerAttributes.CurrentExperienceMultiplier);
-        experience += modifiedAmount;
+        int modified = ExpCalculator.ApplyMultiplier(baseAmount, _attributes.CurrentExperienceMultiplier);
+        CurrentExp += modified;
+        PublishExpChange();
 
-
-        LevelUpChecker();
-        UpdateExpBar();
-    }
-
-
-    public void LevelUpChecker()
-    {
-        if (experience >= experienceCap)
+        while (CurrentExp >= ExpCap)
         {
-            level++;
-            experience -= experienceCap;
-
-            int experienceCapIncrease = 0;
-            foreach (LevelRange range in levelRanges)
-            {
-                if (level >= range.startLevel && level <= range.endLevel)
-                {
-                    experienceCapIncrease = range.experienceCapIncrease;
-                    break;
-                }
-            }
-            experienceCap += experienceCapIncrease;
-
-            UpdateLevelText();
-
-            GameManager.instance.StartLevelUp();
+            LevelUp();
         }
     }
 
 
-    void UpdateExpBar()
+    private void LevelUp()
     {
-        expBar.fillAmount = (float)experience / experienceCap;
+        CurrentExp -= ExpCap;
+        CurrentLevel++;
+        ExpCap = DetermineCapForLevel(CurrentLevel);
+
+        PublishLevelReached();
+        PublishExpChange();
+
+        GameManager.instance?.StartLevelUp();
     }
 
 
-    void UpdateLevelText()
+    private int DetermineCapForLevel(int level)
     {
-        levelText.text = "LVL " + level.ToString();
+        foreach (var range in _levelRanges)
+        {
+            if (level >= range.Start && level <= range.End)
+                return range.CapIncrease;
+        }
+        Debug.LogWarning($"No LevelRange covers level {level} on {gameObject.name}", this);
+        return _levelRanges.Count > 0 ? _levelRanges[0].CapIncrease : 100;
+    }
+
+
+    private void PublishExpChange()
+    {
+        ExpChanged?.Invoke(CurrentExp, ExpCap);
+    }
+
+
+    private void PublishLevelReached()
+    {
+        LevelReached?.Invoke(CurrentLevel);
+    }
+
+
+    private T WarnMissing<T>() where T : class
+    {
+        Debug.LogWarning($"{typeof(T).Name} is missing on {gameObject.name}", this);
+        return null;
     }
 }
-

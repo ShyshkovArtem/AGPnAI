@@ -8,7 +8,7 @@ public class BoomerangController : WeaponController
     {
         base.Attack();
 
-        Vector3 baseDirection = ((Vector3)pm.lastMovedVector != Vector3.zero) ? (Vector3)pm.lastMovedVector : Vector3.right;
+        Vector3 baseDirection = ((Vector3)pm.LastMovedDirection != Vector3.zero) ? (Vector3)pm.LastMovedDirection : Vector3.right;
         int level = weaponData.Level;
         int boomerangCount = 1;
 
